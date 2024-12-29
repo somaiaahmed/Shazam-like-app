@@ -11,6 +11,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QIcon
 import soundfile as sf
 import json
+from scipy.spatial.distance import cosine
 from audioProcessor import extract_features, hash_features, search_similar_songs
 
 class AudioSimilarityApp(QMainWindow):
@@ -188,34 +189,96 @@ class AudioSimilarityApp(QMainWindow):
             self.stop_playback()
 
     def search_similar_songs(self):
-        pass
-        
-        # if not self.file1_path:
-        #     return
+        def calculate_hash_similarity(hash1, hash2):
+            """
+            Calculate similarity between two hashes using byte-level comparison
+            Returns a value between 0 and 1
+            """
+            try:
+                # Convert hashes to byte arrays for comparison
+                hash1_bytes = bytes.fromhex(hash1)
+                hash2_bytes = bytes.fromhex(hash2)
+                
+                # Count matching bytes
+                matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
+                
+                # Calculate similarity ratio
+                similarity = matches / len(hash1_bytes)
+                return similarity
+            except Exception as e:
+                print(f"Error calculating hash similarity: {str(e)}")
+                return 0
 
-        # # Blend files if both are selected
-        # if self.file2_path:
-        #     blended, sr = self.blend_files()
-        #     librosa.output.write_wav("blended_audio.wav", blended, sr)
-        #     query_path = "blended_audio.wav"
-        # else:
-        #     query_path = self.file1_path
+        if not self.file1_path or not os.path.exists("output/feature_hashes.json"):
+            self.results_table.setRowCount(0)
+            return
 
-        # # Extract features and search for similar songs
-        # query_features = extract_features(query_path)
-        # query_hash = hash_features(query_features)
+        try:
+            # Load hash database
+            with open("output/feature_hashes.json", "r") as f:
+                hash_database = json.load(f)
+            
+            # Process the current audio mix if both files are selected
+            if self.file2_path and self.audio_output is not None:
+                temp_mix_path = "temp_mix.wav"
+                sf.write(temp_mix_path, self.audio_output, self.sample_rate)
+                query_path = temp_mix_path
+            else:
+                query_path = self.file1_path
 
-        # # Load hash database
-        # with open("output/feature_hashes.json", "r") as f:
-        #     hash_database = json.load(f)
+            # Extract features and generate hash for query
+            query_features = extract_features(query_path)
+            query_hash = hash_features(query_features)
 
-        # results = search_similar_songs(query_hash, hash_database, top_n=5)
+            # Identify whether the files are vocals or instruments
+            file1_is_vocals = "vocals" in self.file1_path.lower() or "vocal" in self.file1_path.lower()
+            file2_is_vocals = "vocals" in self.file2_path.lower() or "vocal" in self.file2_path.lower() if self.file2_path else False
 
-        # # Display results
-        # self.results_table.setRowCount(len(results))
-        # for i, (similarity, song_name) in enumerate(results):
-        #     self.results_table.setItem(i, 0, QTableWidgetItem(song_name))
-        #     self.results_table.setItem(i, 1, QTableWidgetItem(f"{similarity:.4f}"))
+            file_type = "vocals" if file1_is_vocals or file2_is_vocals else "instruments"
+            
+            # Filter hash database based on file type
+            filtered_hashes = []
+            for entry in hash_database:
+                song_name = entry["song_name"]
+                if file_type == "vocals" and ("vocals" in song_name.lower() or "vocal" in song_name.lower()):
+                    filtered_hashes.append(entry)
+                elif file_type == "instruments" and ("music" in song_name.lower() or "instrumental" in song_name.lower()):
+                    filtered_hashes.append(entry)
+
+            # Calculate similarity for each filtered entry
+            similarities = []
+            for entry in filtered_hashes:
+                similarity = calculate_hash_similarity(query_hash, entry["hash"])
+                similarities.append({
+                    "song_name": entry["song_name"],
+                    "similarity": similarity
+                })
+
+            # Sort results by similarity
+            similarities.sort(key=lambda x: x["similarity"], reverse=True)
+
+            # Update table with sorted results
+            self.results_table.setRowCount(len(similarities))
+            self.results_table.setColumnCount(2)
+            self.results_table.setHorizontalHeaderLabels(["Song Name", "Similarity"])
+
+            for i, result in enumerate(similarities):
+                song_name_item = QTableWidgetItem(result["song_name"])
+                similarity_item = QTableWidgetItem(f"{result['similarity']:.2%}")
+                self.results_table.setItem(i, 0, song_name_item)
+                self.results_table.setItem(i, 1, similarity_item)
+
+            # Enable sorting and resize columns
+            self.results_table.setSortingEnabled(True)
+            self.results_table.resizeColumnsToContents()
+
+            # Clean up temporary file
+            if self.file2_path and os.path.exists("temp_mix.wav"):
+                os.remove("temp_mix.wav")
+
+        except Exception as e:
+            print(f"Error during search: {str(e)}")
+            self.results_table.setRowCount(0)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
