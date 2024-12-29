@@ -188,34 +188,30 @@ class AudioSimilarityApp(QMainWindow):
             self.stop_playback()
 
     def search_similar_songs(self):
-        pass
-        
-        # if not self.file1_path:
-        #     return
+        if not self.file1_path:
+            return
 
-        # # Blend files if both are selected
-        # if self.file2_path:
-        #     blended, sr = self.blend_files()
-        #     librosa.output.write_wav("blended_audio.wav", blended, sr)
-        #     query_path = "blended_audio.wav"
-        # else:
-        #     query_path = self.file1_path
+        # Use the mixed audio if both files are selected
+        if self.file2_path and self.audio_output is not None:
+            query_path = "mixed_output.wav"
+        else:
+            query_path = self.file1_path
 
-        # # Extract features and search for similar songs
-        # query_features = extract_features(query_path)
-        # query_hash = hash_features(query_features)
+        # Extract features and search for similar songs
+        query_features = extract_features(query_path)
+        query_hash = hash_features(query_features)
 
-        # # Load hash database
-        # with open("output/feature_hashes.json", "r") as f:
-        #     hash_database = json.load(f)
+        # Load hash database
+        with open("output/feature_hashes.json", "r") as f:
+            hash_database = json.load(f)
 
-        # results = search_similar_songs(query_hash, hash_database, top_n=5)
+        results = search_similar_songs(query_hash, hash_database, top_n=5)
 
-        # # Display results
-        # self.results_table.setRowCount(len(results))
-        # for i, (similarity, song_name) in enumerate(results):
-        #     self.results_table.setItem(i, 0, QTableWidgetItem(song_name))
-        #     self.results_table.setItem(i, 1, QTableWidgetItem(f"{similarity:.4f}"))
+        # Display results
+        self.results_table.setRowCount(len(results))
+        for i, (similarity, song_name) in enumerate(results):
+            self.results_table.setItem(i, 0, QTableWidgetItem(song_name))
+            self.results_table.setItem(i, 1, QTableWidgetItem(f"{similarity:.4f}"))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
