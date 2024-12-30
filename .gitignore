@@ -1,7 +1,9 @@
 Music/
 Features/
 output/spectrograms/
+__pycache__/
+.DS_Store
+._*
 new.py
 test2.py
 Features.ipynb
-
