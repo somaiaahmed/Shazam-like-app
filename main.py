@@ -253,7 +253,7 @@ class AudioSimilarityApp(QMainWindow):
             if file1_type == 'vocals' and file2_type == 'vocals':
                 target_type = 'vocals'
             elif file1_type == 'music' and file2_type == 'music':
-                target_type = 'original'
+                target_type = 'music'
             elif file1_type == 'original' or file2_type == 'original':
                 target_type = 'original'
             
@@ -279,7 +279,7 @@ class AudioSimilarityApp(QMainWindow):
                 if entry_type == target_type and song_name in feature_lookup:
                     hash_sim = calculate_hash_similarity(query_hash, hash_entry['perceptual_audio_hash'])
                     feature_sim = calculate_feature_similarity(query_features, feature_lookup[song_name])
-                    combined_sim = (0.6 * feature_sim) + (0.4 * hash_sim)
+                    combined_sim = (0.8 * feature_sim) + (0.2 * hash_sim)
                     
                     similarities.append({
                         'song_name': song_name,
