@@ -21,7 +21,6 @@ QHeaderView::section {
     border: 1px solid #555555; /* Matching border with the table */
 }
 QTableWidget::item {
-    padding: 6px;
     align-items: center;
     vertical-align: middle;
     border: none;
