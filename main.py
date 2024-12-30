@@ -188,37 +188,76 @@ class AudioSimilarityApp(QMainWindow):
         if not sd.get_stream().active:
             self.stop_playback()
 
+    
+
     def search_similar_songs(self):
+        def get_file_type(filename):
+            """Determine the type of audio file based on its name"""
+            filename = filename.lower()
+            if any(vocal_term in filename for vocal_term in ['vocals', 'vocal', 'lyrics']):
+                return 'vocals'
+            elif any(music_term in filename for music_term in ['music', 'instruments', 'instrumental']):
+                return 'music'
+            else:
+                return 'original'
+        def calculate_feature_similarity(features1, features2):
+            """Calculate similarity between two sets of audio features"""
+            similarities = {
+                'mfcc': 1 - cosine(features1['mfcc'], features2['mfcc']),
+                'chroma': 1 - cosine(features1['chroma'], features2['chroma']),
+                'spectral_contrast': 1 - cosine(features1['spectral_contrast'], features2['spectral_contrast']),
+                'spectral': 1 - abs(features1['spectral_centroid'] - features2['spectral_centroid']) / max(features1['spectral_centroid'], features2['spectral_centroid'])
+            }
+            
+            # Weights for different feature types
+            weights = {
+                'mfcc': 0.4,  # MFCCs are good for timbre
+                'chroma': 0.3,  # Chroma features capture harmony
+                'spectral_contrast': 0.2,  # Captures tonal vs noise-like content
+                'spectral': 0.1   # Basic spectral properties
+            }
+            
+            return sum(similarities[k] * weights[k] for k in weights)
+
         def calculate_hash_similarity(hash1, hash2):
-            """
-            Calculate similarity between two hashes using byte-level comparison
-            Returns a value between 0 and 1
-            """
+            """Calculate similarity between two perceptual hashes"""
             try:
-                # Convert hashes to byte arrays for comparison
                 hash1_bytes = bytes.fromhex(hash1)
                 hash2_bytes = bytes.fromhex(hash2)
-                
-                # Count matching bytes
                 matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
-                
-                # Calculate similarity ratio
-                similarity = matches / len(hash1_bytes)
-                return similarity
+                return matches / len(hash1_bytes)
             except Exception as e:
                 print(f"Error calculating hash similarity: {str(e)}")
                 return 0
-
-        if not self.file1_path or not os.path.exists("output/feature_hashes.json"):
+        """Enhanced search method with type-based filtering"""
+        if not self.file1_path:
             self.results_table.setRowCount(0)
             return
 
         try:
-            # Load hash database
-            with open("output/feature_hashes.json", "r") as f:
+            # Load databases
+            with open("output/perceptual_hashes.json", "r") as f:
                 hash_database = json.load(f)
+            with open("output/all_features.json", "r") as f:
+                feature_database = json.load(f)
+                
+            # Create lookup dictionary for features
+            feature_lookup = {entry['song_name']: entry['features'] for entry in feature_database}
             
-            # Process the current audio mix if both files are selected
+            # Determine search type based on input files
+            file1_type = get_file_type(self.file1_path)
+            file2_type = get_file_type(self.file2_path) if self.file2_path else file1_type
+
+            # Filter database entries based on input types
+            target_type = None
+            if file1_type == 'vocals' and file2_type == 'vocals':
+                target_type = 'vocals'
+            elif file1_type == 'music' and file2_type == 'music':
+                target_type = 'original'
+            elif file1_type == 'original' or file2_type == 'original':
+                target_type = 'original'
+            
+            # Process current audio
             if self.file2_path and self.audio_output is not None:
                 temp_mix_path = "temp_mix.wav"
                 sf.write(temp_mix_path, self.audio_output, self.sample_rate)
@@ -226,44 +265,37 @@ class AudioSimilarityApp(QMainWindow):
             else:
                 query_path = self.file1_path
 
-            # Extract features and generate hash for query
+            # Extract features and hash for query
             query_features = extract_features(query_path)
             query_hash = hash_features(query_features)
 
-            # Identify whether the files are vocals or instruments
-            file1_is_vocals = "vocals" in self.file1_path.lower() or "vocal" in self.file1_path.lower()
-            file2_is_vocals = "vocals" in self.file2_path.lower() or "vocal" in self.file2_path.lower() if self.file2_path else False
-
-            file_type = "vocals" if file1_is_vocals or file2_is_vocals else "instruments"
-            
-            # Filter hash database based on file type
-            filtered_hashes = []
-            for entry in hash_database:
-                song_name = entry["song_name"]
-                if file_type == "vocals" and ("vocals" in song_name.lower() or "vocal" in song_name.lower()):
-                    filtered_hashes.append(entry)
-                elif file_type == "instruments" and ("music" in song_name.lower() or "instrumental" in song_name.lower()):
-                    filtered_hashes.append(entry)
-
-            # Calculate similarity for each filtered entry
+            # Calculate similarities with type filtering
             similarities = []
-            for entry in filtered_hashes:
-                similarity = calculate_hash_similarity(query_hash, entry["hash"])
-                similarities.append({
-                    "song_name": entry["song_name"],
-                    "similarity": similarity
-                })
+            for hash_entry in hash_database:
+                song_name = hash_entry['song_name']
+                entry_type = get_file_type(song_name)
+                
+                # Only process entries matching the target type
+                if entry_type == target_type and song_name in feature_lookup:
+                    hash_sim = calculate_hash_similarity(query_hash, hash_entry['perceptual_audio_hash'])
+                    feature_sim = calculate_feature_similarity(query_features, feature_lookup[song_name])
+                    combined_sim = (0.6 * feature_sim) + (0.4 * hash_sim)
+                    
+                    similarities.append({
+                        'song_name': song_name,
+                        'similarity': combined_sim
+                    })
 
-            # Sort results by similarity
-            similarities.sort(key=lambda x: x["similarity"], reverse=True)
+            # Sort by similarity
+            similarities.sort(key=lambda x: x['similarity'], reverse=True)
 
-            # Update table with sorted results
+            # Update table
             self.results_table.setRowCount(len(similarities))
             self.results_table.setColumnCount(2)
             self.results_table.setHorizontalHeaderLabels(["Song Name", "Similarity"])
 
             for i, result in enumerate(similarities):
-                song_name_item = QTableWidgetItem(result["song_name"])
+                song_name_item = QTableWidgetItem(result['song_name'])
                 similarity_item = QTableWidgetItem(f"{result['similarity']:.2%}")
                 self.results_table.setItem(i, 0, song_name_item)
                 self.results_table.setItem(i, 1, similarity_item)
