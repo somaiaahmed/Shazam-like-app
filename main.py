@@ -315,6 +315,8 @@ class AudioSimilarityApp(QMainWindow):
                 target_type = 'vocals'
             elif file1_type == 'music' and file2_type == 'music':
                 target_type = 'music'
+            elif (file1_type == 'music' and file2_type == 'vocals') or (file1_type == 'vocals' and file2_type == 'music'):
+                target_type = 'original'
             elif file1_type == 'original' or file2_type == 'original':
                 target_type = 'original'
             
