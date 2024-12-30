@@ -22,6 +22,8 @@ QHeaderView::section {
 }
 QTableWidget::item {
     padding: 6px;
+    align-items: center;
+    vertical-align: middle;
     border: none;
     color: #e0e0e0; /* Light text for items */
 }
@@ -425,7 +427,13 @@ QScrollBar::right-arrow:horizontal {
 }
 
 #play_btn{
-    background-color: transparent; border: none; width: 50px; height: 50px; 
+    background-color: transparent; border: none;
+    qproperty-icon: url(ico/play.png);
+    qproperty-iconSize: 28px 28px;
+}
+
+#play_mix_btn{
+    background-color: #007AFF;
     qproperty-icon: url(ico/play.png);
     qproperty-iconSize: 28px 28px;
 }
@@ -433,7 +441,12 @@ QScrollBar::right-arrow:horizontal {
 #res_play_btn{
     background-color: transparent; border: none;
     qproperty-icon: url(ico/play.png);
-    qproperty-iconSize: 23px 23px;
+    qproperty-iconSize: 20px 20px;
+}
+#res_pause_btn{
+    background-color: transparent; border: none;
+    qproperty-icon: url(ico/pause.png);
+    qproperty-iconSize: 20px 20px;
 }
 
 #top_widget{

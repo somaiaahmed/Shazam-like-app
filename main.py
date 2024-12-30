@@ -46,17 +46,16 @@ class AudioSimilarityApp(QMainWindow):
         self.sample_rate = None
         self.is_playing = False
         self.audio_output = None
+        self.audio_output_mixed = None
 
         # Central widget
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout()
-        
-        
+
         self.top_layout = QVBoxLayout()
         self.top_layout.setObjectName("top_layout")
-        
-        
+
         self.central_widget.setLayout(self.layout)
         self.layout.setAlignment(Qt.AlignCenter)
         # File selection section
@@ -88,6 +87,8 @@ class AudioSimilarityApp(QMainWindow):
         self.select_file1_btn.clicked.connect(self.select_file1)
         self.play_file1_btn = QPushButton("")
         self.play_file1_btn.setObjectName("play_btn")
+        self.play_file1_btn.clicked.connect(
+            lambda: self.toggle_playback(self.play_file1_btn, 'track1'))
 
         file1_layout.addWidget(self.file1_label)
         file1_layout.addWidget(self.select_file1_btn)
@@ -102,6 +103,8 @@ class AudioSimilarityApp(QMainWindow):
 
         self.play_file2_btn = QPushButton("")
         self.play_file2_btn.setObjectName("play_btn")
+        self.play_file2_btn.clicked.connect(
+            lambda: self.toggle_playback(self.play_file2_btn, 'track2'))
 
         file2_layout.addWidget(self.file2_label)
         file2_layout.addWidget(self.select_file2_btn)
@@ -138,11 +141,12 @@ class AudioSimilarityApp(QMainWindow):
     def setup_playback_controls(self):
         self.control_layout = QHBoxLayout()
 
-        self.play_btn = QPushButton("Play Mix")
-        self.play_btn.clicked.connect(self.toggle_playback)
-        self.control_layout.addWidget(self.play_btn)
+        self.play_btn = QPushButton(" Mix")
 
-        
+        # self.play_btn.clicked.connect(self.toggle_playback(self.play_btn))
+        self.play_btn.clicked.connect(
+            lambda: self.toggle_playback(self.play_btn, 'mixed'))
+        self.control_layout.addWidget(self.play_btn)
 
     def setup_search_section(self):
         # Search button
@@ -150,16 +154,15 @@ class AudioSimilarityApp(QMainWindow):
         self.search_btn.clicked.connect(self.search_similar_songs)
         self.control_layout.addWidget(self.search_btn)
         self.top_layout.addLayout(self.control_layout)
-        
-        
+
         self.top_widget = QWidget()
         self.top_widget.setLayout(self.top_layout)
         self.top_widget.setObjectName("top_widget")
-        self.layout.addWidget(self.top_widget,0, Qt.AlignCenter)
+        self.layout.addWidget(self.top_widget, 0, Qt.AlignCenter)
 
         # Table for results
         self.results_table = QTableWidget()
-        
+
         self.results_table.resizeColumnsToContents()
         self.results_table.setColumnCount(3)
         self.results_table.setHorizontalHeaderLabels(
@@ -171,8 +174,9 @@ class AudioSimilarityApp(QMainWindow):
         self.results_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.results_table.resizeRowsToContents()
         self.results_table.resizeColumnsToContents()
-        self.layout.addWidget(self.results_table )
+        self.layout.addWidget(self.results_table)
         self.layout.setAlignment(Qt.AlignCenter)
+
     def select_file1(self):
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Select File 1", "", "Audio Files (*.wav *.mp3)")
@@ -217,20 +221,49 @@ class AudioSimilarityApp(QMainWindow):
             ratio2 = self.slider2.value() / 100
 
             # Mix the audio
-            self.audio_output = (audio1 * ratio1) + (audio2 * ratio2)
+            self.audio_output_mixed = (audio1 * ratio1) + (audio2 * ratio2)
 
             # Save the mixed audio for similarity search
-            sf.write("mixed_output.wav", self.audio_output, self.sample_rate)
+            sf.write("mixed_output.wav",
+                     self.audio_output_mixed, self.sample_rate)
 
-    def toggle_playback(self):
-        if not self.is_playing and self.audio_output is not None:
-            self.play_btn.setText("Stop")
+    def toggle_playback(self, button, track_source=None):
+        is_playing = button.property("is_playing")
+
+        if not is_playing:
+            if track_source == 'track1':
+                if self.file1_audio is not None:
+                    self.audio_output = self.file1_audio
+                    self.sample_rate = self.sample_rate
+                else:
+                    print("No track 1 selected")
+                    return
+            elif track_source == 'track2':
+                if self.file2_audio is not None:
+                    self.audio_output = self.file2_audio
+                    self.sample_rate = self.sample_rate
+                else:
+                    print("No track 2 selected")
+                    return
+            elif track_source == 'mixed':
+                self.audio_output = self.audio_output_mixed
+
+            elif isinstance(track_source, str):  # A file path
+                self.audio_output, self.sample_rate = librosa.load(
+                    track_source, sr=None)
+            else:
+                return  # No valid audio selected
+
+            # Start playback
             self.is_playing = True
-            self.current_position = 0
+            button.setIcon(QIcon("ico/pause.png"))
+            button.setProperty("is_playing", True)
             self.start_playback()
         else:
-            self.play_btn.setText("Play Mix")
+            # Stop playback
             self.is_playing = False
+            button.setIcon(QIcon("ico/play.png"))
+            button.setProperty("is_playing", False)
             self.stop_playback()
 
     def start_playback(self):
@@ -242,14 +275,12 @@ class AudioSimilarityApp(QMainWindow):
         self.audio_timer.stop()
         sd.stop()
         self.is_playing = False
-        self.play_btn.setText("Play Mix")
+        self.play_btn.setText(" Mix")
         self.current_position = 0
 
     def play_audio_chunk(self):
         if not sd.get_stream().active:
             self.stop_playback()
-
-    
 
     def search_similar_songs(self):
         def get_file_type(filename):
@@ -261,6 +292,7 @@ class AudioSimilarityApp(QMainWindow):
                 return 'music'
             else:
                 return 'original'
+
         def calculate_feature_similarity(features1, features2):
             """Calculate similarity between two sets of audio features"""
             similarities = {
@@ -269,7 +301,7 @@ class AudioSimilarityApp(QMainWindow):
                 'spectral_contrast': 1 - cosine(features1['spectral_contrast'], features2['spectral_contrast']),
                 'spectral': 1 - abs(features1['spectral_centroid'] - features2['spectral_centroid']) / max(features1['spectral_centroid'], features2['spectral_centroid'])
             }
-            
+
             # Weights for different feature types
             weights = {
                 'mfcc': 0.4,  # MFCCs are good for timbre
@@ -277,7 +309,7 @@ class AudioSimilarityApp(QMainWindow):
                 'spectral_contrast': 0.2,  # Captures tonal vs noise-like content
                 'spectral': 0.1   # Basic spectral properties
             }
-            
+
             return sum(similarities[k] * weights[k] for k in weights)
 
         def calculate_hash_similarity(hash1, hash2):
@@ -285,7 +317,8 @@ class AudioSimilarityApp(QMainWindow):
             try:
                 hash1_bytes = bytes.fromhex(hash1)
                 hash2_bytes = bytes.fromhex(hash2)
-                matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
+                matches = sum(1 for a, b in zip(
+                    hash1_bytes, hash2_bytes) if a == b)
                 return matches / len(hash1_bytes)
             except Exception as e:
                 print(f"Error calculating hash similarity: {str(e)}")
@@ -301,13 +334,15 @@ class AudioSimilarityApp(QMainWindow):
                 hash_database = json.load(f)
             with open("output/all_features.json", "r") as f:
                 feature_database = json.load(f)
-                
+
             # Create lookup dictionary for features
-            feature_lookup = {entry['song_name']: entry['features'] for entry in feature_database}
-            
+            feature_lookup = {entry['song_name']: entry['features']
+                              for entry in feature_database}
+
             # Determine search type based on input files
             file1_type = get_file_type(self.file1_path)
-            file2_type = get_file_type(self.file2_path) if self.file2_path else file1_type
+            file2_type = get_file_type(
+                self.file2_path) if self.file2_path else file1_type
 
             # Filter database entries based on input types
             target_type = None
@@ -317,7 +352,7 @@ class AudioSimilarityApp(QMainWindow):
                 target_type = 'music'
             elif file1_type == 'original' or file2_type == 'original':
                 target_type = 'original'
-            
+
             # Process current audio
             if self.file2_path and self.audio_output is not None:
                 temp_mix_path = "temp_mix.wav"
@@ -335,13 +370,15 @@ class AudioSimilarityApp(QMainWindow):
             for hash_entry in hash_database:
                 song_name = hash_entry['song_name']
                 entry_type = get_file_type(song_name)
-                
+
                 # Only process entries matching the target type
                 if entry_type == target_type and song_name in feature_lookup:
-                    hash_sim = calculate_hash_similarity(query_hash, hash_entry['perceptual_audio_hash'])
-                    feature_sim = calculate_feature_similarity(query_features, feature_lookup[song_name])
+                    hash_sim = calculate_hash_similarity(
+                        query_hash, hash_entry['perceptual_audio_hash'])
+                    feature_sim = calculate_feature_similarity(
+                        query_features, feature_lookup[song_name])
                     combined_sim = (0.8 * feature_sim) + (0.2 * hash_sim)
-                    
+
                     similarities.append({
                         'song_name': song_name,
                         'similarity': combined_sim
@@ -353,24 +390,31 @@ class AudioSimilarityApp(QMainWindow):
             # Update table
             self.results_table.setRowCount(len(similarities))
             self.results_table.setColumnCount(3)
-            self.results_table.setHorizontalHeaderLabels(["Song Name", "Similarity",""])
+            self.results_table.setHorizontalHeaderLabels(
+                ["Song Name", "Similarity", ""])
+            self.results_table.resizeRowsToContents()
 
             for i, result in enumerate(similarities):
                 song_name_item = QTableWidgetItem(result['song_name'])
-                similarity_item = QTableWidgetItem(f"{result['similarity']:.2%}")
+                similarity_item = QTableWidgetItem(
+                    f"{result['similarity']:.2%}")
                 self.results_table.setItem(i, 0, song_name_item)
                 self.results_table.setItem(i, 1, similarity_item)
-                play_button = QPushButton()
-                play_button.setIcon(QIcon("ico/play.png"))
-                play_button.setObjectName("res_play_btn")
-                self.results_table.setCellWidget(i, 2, play_button)
 
-            # Enable sorting and resize columns
+                res_play_button = QPushButton()
+                res_play_button.setIcon(QIcon("ico/play.png"))
+                res_play_button.setObjectName("res_play_btn")
+                res_play_button.setProperty("is_playing", False)
+
+                # correct file path for each track
+                filepath = f"Music/{result['song_name']}.wav" if os.path.exists(
+                    f"Music/{result['song_name']}.wav") else f"Music/{result['song_name']}.mp3"
+
+                res_play_button.clicked.connect(
+                    lambda _, btn=res_play_button, track_source=filepath: self.toggle_playback(btn, track_source=track_source))
+
+                self.results_table.setCellWidget(i, 2, res_play_button)
             self.results_table.setSortingEnabled(True)
-            # self.results_table.resizeRowsToContents()
-            
-
-            # self.results_table.resizeColumnsToContents()
 
             # Clean up temporary file
             if self.file2_path and os.path.exists("temp_mix.wav"):
@@ -379,7 +423,7 @@ class AudioSimilarityApp(QMainWindow):
         except Exception as e:
             print(f"Error during search: {str(e)}")
             self.results_table.setRowCount(0)
-        
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
