@@ -1,49 +1,57 @@
 QMainWindow {
-    background-color: #0F0E13
+    background-color: #393535
     ;
 }
 
 /* QTableWidget Style */
+/* QTableWidget Style */
 QTableWidget {
-    border: 1px solid #ddd;
-    gridline-color: #ccc;
-    background-color: white;
-    selection-color: white;
-    background-color: #201e27;
+    background-color: #2b2b2b; /* Dark background for the table */
+    alternate-background-color: #383838; /* Slightly lighter for alternating rows */
+    border: 1px solid #555555; /* Subtle border color */
+    gridline-color: #444444; /* Gridlines matching the dark theme */
     font-size: 14px;
+    color: #e0e0e0; /* Light text color for readability */
 }
 QHeaderView::section {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 4px;
+    background-color: #44475a; /* Header background */
+    color: #ffffff; /* White text for contrast */
     font-weight: bold;
+    padding: 4px;
+    border: 1px solid #555555; /* Matching border with the table */
 }
 QTableWidget::item {
+    padding: 6px;
     border: none;
-    padding: 4px;
+    color: #e0e0e0; /* Light text for items */
 }
 QTableWidget::item:selected {
-    background-color: #4caf50;
-    color: white;
+    background-color: #6272a4; /* Highlighted row background */
+    color: #ffffff; /* White text for selected items */
+}
+QTableWidget::item:hover {
+    background-color: #4b4b4b; /* Hover effect background */
+    color: #e0e0e0; /* Text remains consistent */
 }
 
 
 QPushButton, QToolButton, QCommandLinkButton{
-    padding: 0 5px 0 5px;
+    /* padding: 0 5px 0 5px; */
     border-style: solid;
     border-top-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c1c9cf, stop:1 #d2d8dd);
     border-right-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:0, stop:0 #c1c9cf, stop:1 #d2d8dd);
     border-bottom-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #c1c9cf, stop:1 #d2d8dd);
     border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #c1c9cf, stop:1 #d2d8dd);
-    border-width: 2px;
+    /* border-width: 2px; */
     border-radius: 8px;
     color: white;
     font-weight: bold;
+    font-size: 13px;
     background-color: qlineargradient(spread:pad, x1:0.5, y1:0, x2:0.5, y2:1, stop:0 #fbfdfd, stop:0.5 #ffffff, stop:1 #fbfdfd);
-    max-width: 150px;
-    min-height: 30px;
-    background-color: rgb(31, 87, 231);
-    border-color: rgb(0, 0, 127);
+    max-width: 165px;
+    min-height: 35px;
+    background-color: #007AFF;
+    /* border-color: rgb(0, 0, 127); */
 }
 QPushButton::default, QToolButton::default, QCommandLinkButton::default{
     border: 2px solid transparent;
@@ -203,6 +211,7 @@ QSlider::add-page:horizontal:disabled, QSlider::sub-page:horizontal:disabled, QS
 }
 QLabel, QCheckBox, QRadioButton {
     color: white;
+    font-size: 14px;
 }
 QCheckBox {
     padding: 2px;
@@ -421,4 +430,17 @@ QScrollBar::right-arrow:horizontal {
     qproperty-iconSize: 28px 28px;
 }
 
+#res_play_btn{
+    background-color: transparent; border: none;
+    qproperty-icon: url(ico/play.png);
+    qproperty-iconSize: 23px 23px;
+}
 
+#top_widget{
+    min-width: 900px;
+    
+    align-items: center;
+    background-color: #2b2b2b;
+    border: 1px solid #1f1f1f;
+    border-radius: 5px;
+}

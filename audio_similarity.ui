@@ -4,8 +4,8 @@
  <widget class="QMainWindow" name="AudioSimilarityApp">
   <property name="geometry">
    <rect>
-    <x>100</x>
-    <y>100</y>
+    <x>0</x>
+    <y>0</y>
     <width>800</width>
     <height>800</height>
    </rect>
@@ -13,128 +13,137 @@
   <property name="windowTitle">
    <string>Audio Similarity and Mixer</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <!-- File 1 Section -->
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="mainLayout">
     <item>
-     <layout class="QHBoxLayout" name="file1Layout">
+     <layout class="QVBoxLayout" name="fileSelectionLayout">
       <item>
-       <widget class="QLabel" name="file1Label">
-        <property name="text">
-         <string>File 1: Not Selected</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="file1Layout">
+        <item>
+         <widget class="QLabel" name="file1Label">
+          <property name="text">
+           <string>File 1: Not Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="selectFile1Button">
+          <property name="text">
+           <string>Select File 1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="playFile1Button">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="selectFile1Btn">
-        <property name="text">
-         <string>Select File 1</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="playFile1Btn">
-        <property name="text">
-         <string></string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="file2Layout">
+        <item>
+         <widget class="QLabel" name="file2Label">
+          <property name="text">
+           <string>File 2: Not Selected</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="selectFile2Button">
+          <property name="text">
+           <string>Select File 2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="playFile2Button">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
-    <!-- File 2 Section -->
     <item>
-     <layout class="QHBoxLayout" name="file2Layout">
+     <layout class="QVBoxLayout" name="mixingControlsLayout">
       <item>
-       <widget class="QLabel" name="file2Label">
-        <property name="text">
-         <string>File 2: Not Selected</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="slider1Layout">
+        <item>
+         <widget class="QLabel" name="slider1Label">
+          <property name="text">
+           <string>File 1 Mix: 50%</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="slider1">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="selectFile2Btn">
-        <property name="text">
-         <string>Select File 2</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="playFile2Btn">
-        <property name="text">
-         <string></string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="slider2Layout">
+        <item>
+         <widget class="QLabel" name="slider2Label">
+          <property name="text">
+           <string>File 2 Mix: 50%</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="slider2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
-    <!-- File 1 Slider -->
     <item>
-     <widget class="QLabel" name="slider1Label">
-      <property name="text">
-       <string>File 1 Mix: 50%</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="slider1">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <!-- File 2 Slider -->
-    <item>
-     <widget class="QLabel" name="slider2Label">
-      <property name="text">
-       <string>File 2 Mix: 50%</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSlider" name="slider2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <!-- Playback Controls -->
-    <item>
-     <layout class="QHBoxLayout" name="controlLayout">
+     <layout class="QHBoxLayout" name="playbackControlsLayout">
       <item>
-       <widget class="QPushButton" name="playBtn">
+       <widget class="QPushButton" name="playMixButton">
         <property name="text">
          <string>Play Mix</string>
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="searchButton">
+        <property name="text">
+         <string>Search Similar Songs</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
-    <!-- Search Section -->
-    <item>
-     <widget class="QPushButton" name="searchBtn">
-      <property name="text">
-       <string>Search Similar Songs</string>
-      </property>
-     </widget>
-    </item>
-    <!-- Results Table -->
     <item>
      <widget class="QTableWidget" name="resultsTable">
       <property name="columnCount">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="horizontalHeaderLabels">
        <stringlist>
         <string>Song Name</string>
         <string>Similarity Index</string>
+        <string></string>
        </stringlist>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <resources/>
-  <connections/>
  </widget>
+ <resources/>
+ <connections/>
 </ui>

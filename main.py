@@ -11,6 +11,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QIcon
 import soundfile as sf
 import json
+from scipy.spatial.distance import cosine
 from audioProcessor import extract_features, hash_features, search_similar_songs
 from PyQt5.QtCore import QFile, QTextStream, QSize
 
@@ -37,7 +38,7 @@ class AudioSimilarityApp(QMainWindow):
         self.setStyleSheet(stylesheet)
         self.setWindowTitle("Audio Similarity and Mixer")
         # Made taller to accommodate new controls
-        self.setGeometry(100, 100, 800, 800)
+        self.setGeometry(100, 100, 1000, 800)
 
         # Audio state variables
         self.file1_audio = None
@@ -50,6 +51,12 @@ class AudioSimilarityApp(QMainWindow):
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout()
+        
+        
+        self.top_layout = QVBoxLayout()
+        self.top_layout.setObjectName("top_layout")
+        
+        
         self.central_widget.setLayout(self.layout)
         self.layout.setAlignment(Qt.AlignCenter)
         # File selection section
@@ -76,8 +83,8 @@ class AudioSimilarityApp(QMainWindow):
     def setup_file_selection(self):
         # File 1 selection
         file1_layout = QHBoxLayout()
-        self.file1_label = QLabel("File 1: Not Selected")
-        self.select_file1_btn = QPushButton("Select File 1")
+        self.file1_label = QLabel("Track 1: Not Selected")
+        self.select_file1_btn = QPushButton("Select Track 1")
         self.select_file1_btn.clicked.connect(self.select_file1)
         self.play_file1_btn = QPushButton("")
         self.play_file1_btn.setObjectName("play_btn")
@@ -85,12 +92,12 @@ class AudioSimilarityApp(QMainWindow):
         file1_layout.addWidget(self.file1_label)
         file1_layout.addWidget(self.select_file1_btn)
         file1_layout.addWidget(self.play_file1_btn)
-        self.layout.addLayout(file1_layout)
+        self.top_layout.addLayout(file1_layout)
 
         # File 2 selection
         file2_layout = QHBoxLayout()
-        self.file2_label = QLabel("File 2: Not Selected")
-        self.select_file2_btn = QPushButton("Select File 2")
+        self.file2_label = QLabel("Track 2: Not Selected")
+        self.select_file2_btn = QPushButton("Select Track 2")
         self.select_file2_btn.clicked.connect(self.select_file2)
 
         self.play_file2_btn = QPushButton("")
@@ -99,11 +106,11 @@ class AudioSimilarityApp(QMainWindow):
         file2_layout.addWidget(self.file2_label)
         file2_layout.addWidget(self.select_file2_btn)
         file2_layout.addWidget(self.play_file2_btn)
-        self.layout.addLayout(file2_layout)
+        self.top_layout.addLayout(file2_layout)
 
     def setup_mixing_controls(self):
         # File 1 slider
-        self.slider1_label = QLabel("File 1 Mix: 50%")
+        self.slider1_label = QLabel("Track 1 Mix: 50%")
         slider_layout1 = QHBoxLayout()
         slider_layout1.addWidget(self.slider1_label)
 
@@ -114,10 +121,10 @@ class AudioSimilarityApp(QMainWindow):
         self.slider1.valueChanged.connect(self.update_slider1)
 
         slider_layout1.addWidget(self.slider1)
-        self.layout.addLayout(slider_layout1)
+        self.top_layout.addLayout(slider_layout1)
 
         # File 2 slider
-        self.slider2_label = QLabel("File 2 Mix: 50%")
+        self.slider2_label = QLabel("Track 2 Mix: 50%")
         slider_layout2 = QHBoxLayout()
         slider_layout2.addWidget(self.slider2_label)
         self.slider2 = QSlider(Qt.Horizontal)
@@ -126,40 +133,52 @@ class AudioSimilarityApp(QMainWindow):
         self.slider2.setValue(50)
         self.slider2.valueChanged.connect(self.update_slider2)
         slider_layout2.addWidget(self.slider2)
-        self.layout.addLayout(slider_layout2)
+        self.top_layout.addLayout(slider_layout2)
 
     def setup_playback_controls(self):
-        control_layout = QHBoxLayout()
+        self.control_layout = QHBoxLayout()
 
         self.play_btn = QPushButton("Play Mix")
         self.play_btn.clicked.connect(self.toggle_playback)
-        control_layout.addWidget(self.play_btn)
+        self.control_layout.addWidget(self.play_btn)
 
-        self.layout.addLayout(control_layout)
+        
 
     def setup_search_section(self):
         # Search button
         self.search_btn = QPushButton("Search Similar Songs")
         self.search_btn.clicked.connect(self.search_similar_songs)
-        self.layout.addWidget(self.search_btn)
+        self.control_layout.addWidget(self.search_btn)
+        self.top_layout.addLayout(self.control_layout)
+        
+        
+        self.top_widget = QWidget()
+        self.top_widget.setLayout(self.top_layout)
+        self.top_widget.setObjectName("top_widget")
+        self.layout.addWidget(self.top_widget,0, Qt.AlignCenter)
 
         # Table for results
         self.results_table = QTableWidget()
-        self.results_table.setColumnCount(2)
+        
+        self.results_table.resizeColumnsToContents()
+        self.results_table.setColumnCount(3)
         self.results_table.setHorizontalHeaderLabels(
-            ["Song Name", "Similarity Index"])
+            ["Song Name", "Similarity Index", ""])
         self.results_table.setSizePolicy(
             QSizePolicy.Expanding, QSizePolicy.Expanding)
-        self.results_table.horizontalHeader().setStretchLastSection(True)
+        self.results_table.horizontalHeader().setStretchLastSection(False)
         self.results_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.layout.addWidget(self.results_table)
-
+        self.results_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.results_table.resizeRowsToContents()
+        self.results_table.resizeColumnsToContents()
+        self.layout.addWidget(self.results_table )
+        self.layout.setAlignment(Qt.AlignCenter)
     def select_file1(self):
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Select File 1", "", "Audio Files (*.wav *.mp3)")
         if file_path:
             self.file1_path = file_path
-            self.file1_label.setText(f"File 1: {os.path.basename(file_path)}")
+            self.file1_label.setText(f"Track 1: {os.path.basename(file_path)}")
             self.file1_audio, self.sample_rate = librosa.load(
                 file_path, sr=None)
             self.mix_audio()
@@ -169,7 +188,7 @@ class AudioSimilarityApp(QMainWindow):
             self, "Select File 2", "", "Audio Files (*.wav *.mp3)")
         if file_path:
             self.file2_path = file_path
-            self.file2_label.setText(f"File 2: {os.path.basename(file_path)}")
+            self.file2_label.setText(f"Track 2: {os.path.basename(file_path)}")
             self.file2_audio, _ = librosa.load(
                 file_path, sr=self.sample_rate if self.sample_rate else None)
             self.mix_audio()
@@ -231,36 +250,104 @@ class AudioSimilarityApp(QMainWindow):
             self.stop_playback()
 
     def search_similar_songs(self):
-        # pass
+        def calculate_hash_similarity(hash1, hash2):
+            """
+            Calculate similarity between two hashes using byte-level comparison
+            Returns a value between 0 and 1
+            """
+            try:
+                # Convert hashes to byte arrays for comparison
+                hash1_bytes = bytes.fromhex(hash1)
+                hash2_bytes = bytes.fromhex(hash2)
+                
+                # Count matching bytes
+                matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
+                
+                # Calculate similarity ratio
+                similarity = matches / len(hash1_bytes)
+                return similarity
+            except Exception as e:
+                print(f"Error calculating hash similarity: {str(e)}")
+                return 0
 
-        if not self.file1_path:
+        if not self.file1_path or not os.path.exists("output/feature_hashes.json"):
+            self.results_table.setRowCount(0)
             return
 
-        # Blend files if both are selected
-        if self.file2_path:
-            blended, sr = self.blend_files()
-            librosa.output.write_wav("blended_audio.wav", blended, sr)
-            query_path = "blended_audio.wav"
-        else:
-            query_path = self.file1_path
+        try:
+            # Load hash database
+            with open("output/feature_hashes.json", "r") as f:
+                hash_database = json.load(f)
+            
+            # Process the current audio mix if both files are selected
+            if self.file2_path and self.audio_output is not None:
+                temp_mix_path = "temp_mix.wav"
+                sf.write(temp_mix_path, self.audio_output, self.sample_rate)
+                query_path = temp_mix_path
+            else:
+                query_path = self.file1_path
 
-        # Extract features and search for similar songs
-        query_features = extract_features(query_path)
-        query_hash = hash_features(query_features)
+            # Extract features and generate hash for query
+            query_features = extract_features(query_path)
+            query_hash = hash_features(query_features)
 
-        # Load hash database
-        with open("output/feature_hashes.json", "r") as f:
-            hash_database = json.load(f)
+            # Identify whether the files are vocals or instruments
+            file1_is_vocals = "vocals" in self.file1_path.lower() or "vocal" in self.file1_path.lower()
+            file2_is_vocals = "vocals" in self.file2_path.lower() or "vocal" in self.file2_path.lower() if self.file2_path else False
 
-        results = search_similar_songs(query_hash, hash_database, top_n=5)
+            file_type = "vocals" if file1_is_vocals or file2_is_vocals else "instruments"
+            
+            # Filter hash database based on file type
+            filtered_hashes = []
+            for entry in hash_database:
+                song_name = entry["song_name"]
+                if file_type == "vocals" and ("vocals" in song_name.lower() or "vocal" in song_name.lower()):
+                    filtered_hashes.append(entry)
+                elif file_type == "instruments" and ("music" in song_name.lower() or "instrumental" in song_name.lower()):
+                    filtered_hashes.append(entry)
 
-        # Display results
-        self.results_table.setRowCount(len(results))
-        for i, (similarity, song_name) in enumerate(results):
-            self.results_table.setItem(i, 0, QTableWidgetItem(song_name))
-            self.results_table.setItem(
-                i, 1, QTableWidgetItem(f"{similarity:.4f}"))
+            # Calculate similarity for each filtered entry
+            similarities = []
+            for entry in filtered_hashes:
+                similarity = calculate_hash_similarity(query_hash, entry["hash"])
+                similarities.append({
+                    "song_name": entry["song_name"],
+                    "similarity": similarity
+                })
 
+            # Sort results by similarity
+            similarities.sort(key=lambda x: x["similarity"], reverse=True)
+
+            # Update table with sorted results
+            self.results_table.setRowCount(len(similarities))
+            self.results_table.setColumnCount(3)
+            self.results_table.setHorizontalHeaderLabels(["Song Name", "Similarity",""])
+
+            for i, result in enumerate(similarities):
+                song_name_item = QTableWidgetItem(result["song_name"])
+                similarity_item = QTableWidgetItem(f"{result['similarity']:.2%}")
+                self.results_table.setItem(i, 0, song_name_item)
+                self.results_table.setItem(i, 1, similarity_item)
+                play_button = QPushButton()
+                play_button.setIcon(QIcon("ico/play.png"))
+                play_button.setObjectName("res_play_btn")
+                self.results_table.setCellWidget(i, 2, play_button)
+
+            # Enable sorting and resize columns
+            self.results_table.setSortingEnabled(True)
+            # self.results_table.resizeRowsToContents()
+            
+
+            # self.results_table.resizeColumnsToContents()
+
+            # Clean up temporary file
+            if self.file2_path and os.path.exists("temp_mix.wav"):
+                os.remove("temp_mix.wav")
+
+        except Exception as e:
+            print(f"Error during search: {str(e)}")
+            self.results_table.setRowCount(0)
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
