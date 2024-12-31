@@ -82,13 +82,14 @@ class AudioSimilarityApp(QMainWindow):
     def setup_file_selection(self):
         # File 1 selection
         file1_layout = QHBoxLayout()
-        self.file1_label = QLabel("Track 1: Not Selected")
-        self.select_file1_btn = QPushButton("Select Track 1")
+        self.file1_label = QLabel("First Track: Not Selected")
+        self.select_file1_btn = QPushButton("Select First Track")
         self.select_file1_btn.clicked.connect(self.select_file1)
         self.play_file1_btn = QPushButton("")
         self.play_file1_btn.setObjectName("play_btn")
         self.play_file1_btn.clicked.connect(
             lambda: self.toggle_playback(self.play_file1_btn, 'track1'))
+        self.play_file1_btn.setProperty("is_playing", False)
 
         file1_layout.addWidget(self.file1_label)
         file1_layout.addWidget(self.select_file1_btn)
@@ -97,14 +98,15 @@ class AudioSimilarityApp(QMainWindow):
 
         # File 2 selection
         file2_layout = QHBoxLayout()
-        self.file2_label = QLabel("Track 2: Not Selected")
-        self.select_file2_btn = QPushButton("Select Track 2")
+        self.file2_label = QLabel("Second Track: Not Selected")
+        self.select_file2_btn = QPushButton("Select Second Track")
         self.select_file2_btn.clicked.connect(self.select_file2)
 
         self.play_file2_btn = QPushButton("")
         self.play_file2_btn.setObjectName("play_btn")
         self.play_file2_btn.clicked.connect(
             lambda: self.toggle_playback(self.play_file2_btn, 'track2'))
+        self.play_file2_btn.setProperty("is_playing", False)
 
         file2_layout.addWidget(self.file2_label)
         file2_layout.addWidget(self.select_file2_btn)
@@ -113,7 +115,7 @@ class AudioSimilarityApp(QMainWindow):
 
     def setup_mixing_controls(self):
         # File 1 slider
-        self.slider1_label = QLabel("Track 1 Mix: 50%")
+        self.slider1_label = QLabel("First Track Weight: 50%")
         slider_layout1 = QHBoxLayout()
         slider_layout1.addWidget(self.slider1_label)
 
@@ -127,7 +129,7 @@ class AudioSimilarityApp(QMainWindow):
         self.top_layout.addLayout(slider_layout1)
 
         # File 2 slider
-        self.slider2_label = QLabel("Track 2 Mix: 50%")
+        self.slider2_label = QLabel("Second Track Weight: 50%")
         slider_layout2 = QHBoxLayout()
         slider_layout2.addWidget(self.slider2_label)
         self.slider2 = QSlider(Qt.Horizontal)
@@ -146,6 +148,7 @@ class AudioSimilarityApp(QMainWindow):
         # self.play_btn.clicked.connect(self.toggle_playback(self.play_btn))
         self.play_btn.clicked.connect(
             lambda: self.toggle_playback(self.play_btn, 'mixed'))
+        self.play_btn.setProperty("is_playing", False)
         self.control_layout.addWidget(self.play_btn)
 
     def setup_search_section(self):
@@ -179,33 +182,33 @@ class AudioSimilarityApp(QMainWindow):
 
     def select_file1(self):
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "Select File 1", "", "Audio Files (*.wav *.mp3)")
+            self, "Select First File", "", "Audio Files (*.wav *.mp3)")
         if file_path:
             self.file1_path = file_path
-            self.file1_label.setText(f"Track 1: {os.path.basename(file_path)}")
+            self.file1_label.setText(f"First Track: {os.path.basename(file_path)}")
             self.file1_audio, self.sample_rate = librosa.load(
                 file_path, sr=None)
             self.mix_audio()
 
     def select_file2(self):
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "Select File 2", "", "Audio Files (*.wav *.mp3)")
+            self, "Select Second File", "", "Audio Files (*.wav *.mp3)")
         if file_path:
             self.file2_path = file_path
-            self.file2_label.setText(f"Track 2: {os.path.basename(file_path)}")
+            self.file2_label.setText(f"Second Track: {os.path.basename(file_path)}")
             self.file2_audio, _ = librosa.load(
                 file_path, sr=self.sample_rate if self.sample_rate else None)
             self.mix_audio()
 
     def update_slider1(self):
         value = self.slider1.value()
-        self.slider1_label.setText(f"File 1 Mix: {value}%")
+        self.slider1_label.setText(f"First Track Weight: {value}%")
         self.slider2.setValue(100 - value)
         self.mix_audio()
 
     def update_slider2(self):
         value = self.slider2.value()
-        self.slider2_label.setText(f"File 2 Mix: {value}%")
+        self.slider2_label.setText(f"Second Track Weight: {value}%")
         self.slider1.setValue(100 - value)
         self.mix_audio()
 
@@ -234,14 +237,14 @@ class AudioSimilarityApp(QMainWindow):
             if track_source == 'track1':
                 if self.file1_audio is not None:
                     self.audio_output = self.file1_audio
-                    self.sample_rate = self.sample_rate
+                    self.sample_rate = self.sample_rate # !!!!!!!!!!!!!
                 else:
                     print("No track 1 selected")
                     return
             elif track_source == 'track2':
                 if self.file2_audio is not None:
                     self.audio_output = self.file2_audio
-                    self.sample_rate = self.sample_rate
+                    self.sample_rate = self.sample_rate # !!!!!!!!!!!!!
                 else:
                     print("No track 2 selected")
                     return
@@ -414,6 +417,7 @@ class AudioSimilarityApp(QMainWindow):
 
                 res_play_button.clicked.connect(
                     lambda _, btn=res_play_button, track_source=filepath: self.toggle_playback(btn, track_source=track_source))
+                res_play_button.setProperty("is_playing", False)
 
                 self.results_table.setCellWidget(i, 2, res_play_button)
             self.results_table.setSortingEnabled(True)
