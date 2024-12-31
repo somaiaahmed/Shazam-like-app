@@ -1,202 +1,452 @@
 [
     {
-        "song_name": "wenElkhael_music",
-        "hash": "3c014622d1b4423e462814751393332cdec8c7c010be7e9dff9b07ae29dcb568"
+        "song_name": "Group10_wenElkhael_music.wav",
+        "hash": {
+            "mfcc_hash": "4b84f1d4965d91f1e4f0e28a95ec0d1e1de45a7efa36b38dc9c54f62ec7e0063",
+            "chroma_hash": "8aec17914ca7bc6eaec0e1a310329dbdef76b51e4507b9d4366dc9979a67930e",
+            "energy_hash": "cacf8543a7361c2eb36c965b60e3bf32735dbb8086aa428764bdff90cbcee985",
+            "compact_hash": "b685f7e0"
+        }
     },
     {
-        "song_name": "wenElkhael_original",
-        "hash": "ea0b55fab8fe0d12afec2ef41d3179e096c1a20b7a134cd0d0f531215cbf7d35"
+        "song_name": "Group10_wenElkhael_original.wav",
+        "hash": {
+            "mfcc_hash": "a069d4887cb74c131893eeab172d34f8db5111c7a8b300d474fa11faaf0234ab",
+            "chroma_hash": "3c4d516477a31c0c04c2ce4eeb3da1ccb6d70ccd231bd800296d5cbcc17f6f59",
+            "energy_hash": "0b086e0041b27080d2b1c410cbbed1ab48e5528318cf4dfc265663178bdc249a",
+            "compact_hash": "ae313b0c"
+        }
     },
     {
-        "song_name": "wenElkhael_vocals",
-        "hash": "8a4b8ac4db6222a2e7f0dd8ca027e8181c27cdb6ad5a25fb9d23ca2e63a4be08"
+        "song_name": "Group10_wenElkhael_vocals.wav",
+        "hash": {
+            "mfcc_hash": "7c9b8b04e002c097cd359b2476f858da9c9f681306ab87b54242506bcbc37503",
+            "chroma_hash": "f64db4b7d97524398dbfbe422b0efaee3781bb3843e1afea0f69b92ae7336c0a",
+            "energy_hash": "57bb7cb983f9812f072d191aa65197c4824ac993e63d3b9d28c6f2718a672775",
+            "compact_hash": "3559dc88"
+        }
     },
     {
-        "song_name": "FE!N_Instruments",
-        "hash": "c709428b386097826c50b58c7d9c3801e963a2512efd1b36b5b808dc6f10c79a"
+        "song_name": "Group11_FE!N_Instruments.wav",
+        "hash": {
+            "mfcc_hash": "1a98141f49bedb480970eaaad318e24ae2636141b5dc2a8ec1e1e80ddcedd3d4",
+            "chroma_hash": "84aa8af0b9df245663584a9160677aa9c860303d670b29692371366bd9ec4177",
+            "energy_hash": "73e63ceba6881e882d5fd93c654d197b7d7f851c9121f43784ba5963034e6474",
+            "compact_hash": "ccd9ec00"
+        }
     },
     {
-        "song_name": "FE!N_original",
-        "hash": "fee61e84a5b4db04f6978612464df78b5cea0ba962951b1f39bcd81f4d655666"
+        "song_name": "Group11_FE!N_original.wav",
+        "hash": {
+            "mfcc_hash": "367e91412f7edd0cfecef6057fa9ddf3793fc5bf4ab9fd58daedc4b216f42660",
+            "chroma_hash": "3b98ebbb75119653d91f5d30ec05f1f8199d2ee216ea84bdb5b2dfd01bf2571f",
+            "energy_hash": "4dd4591c6c509f50215cf6c8d9b5b21c4d2d5bc0030244d1169b5c94a5d61ce8",
+            "compact_hash": "bfd23fb8"
+        }
     },
     {
-        "song_name": "FE!N_Vocals",
-        "hash": "7e0930fcfdad9ac39153791d0775eae63096a5259fec493d2e1269488d25f66e"
+        "song_name": "Group11_FE!N_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "43b4607f8862bc9c2be70ab6c80de10d9f039c1b23b7d4341d3f48ef195fbf3f",
+            "chroma_hash": "93c927888b88f6886d5b0a7448e8d1e303de5e0d05e46b85f07c0178a7829c6c",
+            "energy_hash": "23884fed5f38ccc168079aae17cc8c695f1ad7c2848ee9ca46a0e03b440b3e3f",
+            "compact_hash": "1d1c1b79"
+        }
     },
     {
-        "song_name": "LetHerGo_Instrumental",
-        "hash": "f5bc850e3cf6c22f922b12f8314abf3b5c4e0bf97f7d09eb862e988c0a148204"
+        "song_name": "Group13_LetHerGo_Instrumental.wav",
+        "hash": {
+            "mfcc_hash": "6819c77ab8c3b7292deb7e597f9795cfa6e45d95ca233cd0738ca48bafdcba22",
+            "chroma_hash": "74dec6292a38d09126d2b888ede27f66f174be064bc0cdf98d9175c9d19e1bba",
+            "energy_hash": "9f252869aebe949305c5165a690e467b711f2db6c5ba631787c4f2d43a25b64e",
+            "compact_hash": "33925366"
+        }
     },
     {
-        "song_name": "LetHerGo_Original",
-        "hash": "0849a007bc35416e1908957ac492f7bcbf567da1ed51cb15fc944ea9f969508c"
+        "song_name": "Group13_LetHerGo_Original.wav",
+        "hash": {
+            "mfcc_hash": "b06ad24effcbec59d7b52d4052c8c8bdc3680dd3a1391b42edfdcce7be39ff35",
+            "chroma_hash": "9744173601c0ac2216b66047741e863a4389231648c96713b66dfed80cb1ab2b",
+            "energy_hash": "643e513750a3436c60ec3505f349650f4ac14beb723d579d7a96a1035e6ceb2a",
+            "compact_hash": "b2d6204f"
+        }
     },
     {
-        "song_name": "LetHerGo_Vocals",
-        "hash": "9b85da8e44e14e8448d6f0d11e67771b16fca0ab46df974cef2cf9ced2ccf4c4"
+        "song_name": "Group13_LetHerGo_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "5979bb81082e75fa948553de8bd5fd1f52a72f72aac6e3ee72fe3dc623444324",
+            "chroma_hash": "a93f58d1393b69ee3bbad5b7edfc6501c4c72b4a0b4efa5caf04a7d5d1e1c552",
+            "energy_hash": "e8021a3401b8e64f2a0b74a855c17ffe61ac6896928b12b066e6d77a9a6d3ad9",
+            "compact_hash": "59ead4a3"
+        }
     },
     {
-        "song_name": "aSkyFullOf Stars_Music",
-        "hash": "91671ea8467159317dabd2c48abe17e2c20962a1c7aeaf73a44a896e6d32f18a"
+        "song_name": "Group14_aSkyFullOf Stars_Music.mp3",
+        "hash": {
+            "mfcc_hash": "da5539da2f84d07bb273b2e832a52769bbc8161878e08d0bf244f8cca218dd00",
+            "chroma_hash": "fa474cea8f04973e6c2bccb3d80403b7aeba96d127e8dce98040b0772ea9bd05",
+            "energy_hash": "575538a949b55ee708edf36ed9aeb859fd4710c10bda9150631c97bd397cd384",
+            "compact_hash": "a09835e7"
+        }
     },
     {
-        "song_name": "aSkyFullOf Stars_Original",
-        "hash": "c86e245d1dd437370c20ed3b766d433459d9da7db68fa23ea89ccdc3e874552c"
+        "song_name": "Group14_aSkyFullOf Stars_Original.mp3",
+        "hash": {
+            "mfcc_hash": "1732636ebbf13b19d42eba90dab3b7e63c7467f66dd2e65085ef89914b544929",
+            "chroma_hash": "98c0c9b583fbf33add39c3d5689a8bf19a0192f945059bc89ceb17540df7a567",
+            "energy_hash": "bfb1c3932c2cd432a9124c7a971b88196f3b3898a1c884b6e28580e8795e2b9c",
+            "compact_hash": "6a1c11e5"
+        }
     },
     {
-        "song_name": "aSkyFullOf Stars_Vocals",
-        "hash": "29d398c1b692762bfcd88272e43f692984dbf4abfe1e97e4a1c6419e6e7af243"
+        "song_name": "Group14_aSkyFullOf Stars_Vocals.mp3",
+        "hash": {
+            "mfcc_hash": "b08821a5b39cd6e160690ea107bd804ea6721eb8420394d1dc56c8176669d8be",
+            "chroma_hash": "ca72621fa919d10d48f10db4a2330abf92b8a4368431756be85125054e2b3891",
+            "energy_hash": "df12996c0980ba9a75f87a07ea8e1d354ddbf7a0810ac82bcd45bcd2e8c4589d",
+            "compact_hash": "c8dfb502"
+        }
     },
     {
-        "song_name": "YaLala_instruments",
-        "hash": "2774d7a35268a11a33b532795fe2b64856385c79fc79a473c2d506c1a4c78f6d"
+        "song_name": "Group15_YaLala_instruments.wav",
+        "hash": {
+            "mfcc_hash": "d13ef8e9f1950aa970dcd8fd4bebb8304e7daa7f3e39a69e1bcadcfd85d41052",
+            "chroma_hash": "db61b686a9b8182efdeb762a7353a465812de123617187a3232dd8ac4bd7e43a",
+            "energy_hash": "3777287973a4d3f13eaf15e9616586ce89621513010c22ebc51d3f2b04b70cc0",
+            "compact_hash": "93ab9a04"
+        }
     },
     {
-        "song_name": "YaLala_lyrics",
-        "hash": "8bf655ea4d2331cc7e9379446727b0d55459317e8d6d28d5901f36d9a7976e06"
+        "song_name": "Group15_YaLala_lyrics.wav",
+        "hash": {
+            "mfcc_hash": "829cd5bd7200f906af730eee086d6983a4c5bb5a42c9e6b14b2dfa5c093068d1",
+            "chroma_hash": "bc31c9517a338383fec11dfb33a6da5e6f40b47bce0f20013e0ace374d67bf05",
+            "energy_hash": "0e7805c519c8944afb04ef80d8b5507000c526b6efb1da3313a4832cb53b545e",
+            "compact_hash": "21b67874"
+        }
     },
     {
-        "song_name": "YaLala_original",
-        "hash": "dacd820ad0c9ccfb45427589b999b4c4fc89173b4202b28a4022c8aaebb7b07c"
+        "song_name": "Group15_YaLala_original.wav",
+        "hash": {
+            "mfcc_hash": "6bb240f36515eeeca580ecd6d12cd4285932df610a70d2ebee8aa98dc1da064c",
+            "chroma_hash": "e8182ad48fbc2cb96f254da7389c015f8d9005449597cb49f59e30e5ded0d300",
+            "energy_hash": "cb9a1efcf3a32d325de373fcb0170bd816b2c54f077a650f8db7d47430736cff",
+            "compact_hash": "9dbc5867"
+        }
     },
     {
-        "song_name": "SomethingJustLikeThat_Instruments",
-        "hash": "296e922adf9de0b32d9a32719091d093105bf9004d908042a5c148bfdd183335"
+        "song_name": "Group16_SomethingJustLikeThat_Instruments.wav",
+        "hash": {
+            "mfcc_hash": "a85a69d931ec3f4a8146d9379f3eae01a58ea250d20891879126375e95d7a920",
+            "chroma_hash": "9f2bf181c526dd1182c7a8de8bb60338cd473afcc82238e4e3c4022d4c808cc2",
+            "energy_hash": "52f1db198c6ee70f2184625562d2e1d7954a8f5a689924c3bb1cf43adc27baa3",
+            "compact_hash": "e49e81f1"
+        }
     },
     {
-        "song_name": "SomethingJustLikeThat_Lyrics",
-        "hash": "a8c5b4f019ae80c6cfe18dfcbbf441976f9ee4d081e2728f5cd7ccf2a5ece626"
+        "song_name": "Group16_SomethingJustLikeThat_Lyrics.wav",
+        "hash": {
+            "mfcc_hash": "c2f2433fb93998cf7536e9c0031334238a5cc0d7905925bbb1834b3929bca586",
+            "chroma_hash": "9bb31c041a0f37857a5b9d10051b7ae39b7d6933dda339e2eea806c9574bc5c2",
+            "energy_hash": "a86a1958369529449588da194a8dca0686326349e4f7307d69f4e7a0d3d636f6",
+            "compact_hash": "c07cdc76"
+        }
     },
     {
-        "song_name": "SomthingJustLikeThat_Original",
-        "hash": "a3bc8df2320f24309f81977685bbe4ee6b1c5bb73b433a605869953665ab632f"
+        "song_name": "Group16_SomthingJustLikeThat_Original.wav",
+        "hash": {
+            "mfcc_hash": "2086ffe791cacba25a29005e0b8681f033cd84eeedd4a56050b389dc2735ca5e",
+            "chroma_hash": "977d5061cc7fdd8e188a4b710db7a7676eddef5451f9b7a44a2964b2a4507403",
+            "energy_hash": "3a554837e5f650a5fbd74eb8781006ad29bad4b5506274a8a82302335e1c3d83",
+            "compact_hash": "b7f42628"
+        }
     },
     {
-        "song_name": "ShakeItOut_instruments",
-        "hash": "bd5f045bee6ad717dee6204fc840289ad4800ad364fd6afa331a6dea564a8aff"
+        "song_name": "Group17_ShakeItOut_instruments.wav",
+        "hash": {
+            "mfcc_hash": "8131a5a84e5eaa5da96b023c4624a949b261768d2af963542e993a60e9e7e1d5",
+            "chroma_hash": "723da1fa85a8032d282e1698e3194cab49770c095191513aa5b4914714a84318",
+            "energy_hash": "34ba827fad9212b70ad34d207a3c1e7236ca92159c40d1e2577a1b424b2869ef",
+            "compact_hash": "25a828cf"
+        }
     },
     {
-        "song_name": "ShakeItOut_lyrics",
-        "hash": "88a142ca5e93a4017b9a573c7bfdcca677549c127e67e69e8f6414f6ab5049b7"
+        "song_name": "Group17_ShakeItOut_lyrics.wav",
+        "hash": {
+            "mfcc_hash": "193b7b2f47966119205eaa412edabbd2abcbcdcf781954f711c5097b2e9a99a5",
+            "chroma_hash": "594c5e6479f1fcace31e8c667544c2ec388fdb96186de8f29be6cb3f50b6e2e3",
+            "energy_hash": "d1395f45a7658155d545baefbc51106e2c6647246305ed71775dd257ce8d7427",
+            "compact_hash": "37bc1955"
+        }
     },
     {
-        "song_name": "ShakeItOut_original",
-        "hash": "7039d9b2044ff0bd21d67bed8df83ea0980d2dc830403233d98b8c5217dff300"
+        "song_name": "Group17_ShakeItOut_original.wav",
+        "hash": {
+            "mfcc_hash": "0de22d1bcacce4a93e545da6329797688491f3a93e4c182fef8e7ed991cad748",
+            "chroma_hash": "59c10402da41a6ba52a03898c1a47f41305a5a7c982d60b693e577c8681e2bdd",
+            "energy_hash": "8f186d484852e168605850bbd2c8f5043ac353172bab052603200562aed6bc02",
+            "compact_hash": "edd8689e"
+        }
     },
     {
-        "song_name": "RollingInTheDeep_Music",
-        "hash": "d3229105943b831a8ce6e639642178fcfba50e652804f91484433c7ea6b7bb01"
+        "song_name": "Group18_RollingInTheDeep_Music.wav",
+        "hash": {
+            "mfcc_hash": "91ed524b00dc2024fd60f74e6f7ecf5d4659eb9ea2daebf94bc095cc4fee305f",
+            "chroma_hash": "3b10317b1ca17fac38d0e4600fe1c45e57a53269c1da0f1e6b0a53b21fc9f7d3",
+            "energy_hash": "9ecba9ce0af98f82940ceccc122af7796d3a12c237e981fdca7315bfbadd492c",
+            "compact_hash": "11294fd8"
+        }
     },
     {
-        "song_name": "RollingInTheDeep_Vocals",
-        "hash": "3f1d6529b8a313f7c84318323a261accd952fe082dd5cd87863b890f52bea8e3"
+        "song_name": "Group18_RollingInTheDeep_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "8023b4b50d7b28959ca1f030bac02cce31b5ca8f4363120958725496fdf7c71a",
+            "chroma_hash": "c9fecedacbdbd70966603cfefdef7f914c5a5371aac51380872a08d77b6923fe",
+            "energy_hash": "83dd12dfacdce4732ce89733f8d0a7092dd93bb6047251fc70d8f14d5dae019f",
+            "compact_hash": "678b79bc"
+        }
     },
     {
-        "song_name": "ShadowOfMine_Full",
-        "hash": "7af9b3d05e38b737f21cfbc6f6459cd495d49cb7d0d7712097e7008e246ff00a"
+        "song_name": "Group19_ShadowOfMine_Full.wav",
+        "hash": {
+            "mfcc_hash": "ea2ea44271b7872dd55325386d237d84bc2734c915ce5d739b22f3d0acf2e422",
+            "chroma_hash": "2be9618ce5897d3d581fa0b6cb8b3babad41bcecf1fa8e27088ae397849a9c33",
+            "energy_hash": "9a8a499a8706b89f41db0d5f8acca1f114f9cad8cc69be099c3ab0abae447a05",
+            "compact_hash": "cd2c0910"
+        }
     },
     {
-        "song_name": "ShadowOfMine_Music",
-        "hash": "f63820b95535b6727660e5d0a340dfde67dff86f1d404f9aab1170d37d57c1ff"
+        "song_name": "Group19_ShadowOfMine_Music.wav",
+        "hash": {
+            "mfcc_hash": "3cb2412b33e973b876beeac6dcc53bcbdcd7d2901c0266f09597753209468f4f",
+            "chroma_hash": "dc0c337de792bcc6f39917f1bd5beb71eea6c8f553b3ef4d4bbea67601bc9abf",
+            "energy_hash": "be47a510a0c3b439eb3729f5ee11408b9bc7924f25e1054427dd16a3fbeb1967",
+            "compact_hash": "9ae766ae"
+        }
     },
     {
-        "song_name": "ShadowOfMine_Vocals",
-        "hash": "9f20d8a95dfaa7caf92d630688e3dfe4b300ee7f0acd339afe6f24f820acda18"
+        "song_name": "Group19_ShadowOfMine_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "00a9089abd8c5f7af37d5567e90af1784596c60c73b928aeb982af809ef1f19f",
+            "chroma_hash": "cc786a93a977afa97bd4c194559d7e41fef402a29f81b9d1b6bcf325f1806437",
+            "energy_hash": "297059a39e3d368ee87102140615e264c7bb6f22e690ddaf15b27d972eff9f13",
+            "compact_hash": "bd037604"
+        }
     },
     {
-        "song_name": "SaveYourTears_instruments",
-        "hash": "ffd7836544ac3333966e5aac10550d6a46119ef84a1a590d4cab25ab3281044d"
+        "song_name": "Group1_SaveYourTears_instruments.wav",
+        "hash": {
+            "mfcc_hash": "a0efc84bc392c34213c80800f265bd7425a65ec449cfc6088403861e08fea96b",
+            "chroma_hash": "13e822db13b22532a6dc09ddd3a00161e3436080dd8f6a2975ec0b8e59bad047",
+            "energy_hash": "2dbd89e8b597acbff58c32b070dc14ce0a1ac6fbc13ca474c298b48fe7264fe3",
+            "compact_hash": "4215dbe1"
+        }
     },
     {
-        "song_name": "SaveYourTears_lyrcis",
-        "hash": "2fde70f456142bc11a85844ab5f7dd358e48fdd4eb0e13b506b195a25e4b13c0"
+        "song_name": "Group1_SaveYourTears_lyrcis.wav",
+        "hash": {
+            "mfcc_hash": "408cea8e7de4c8e7ffe460d18a285ac9b3e97373957eeba4112b3de5c74534df",
+            "chroma_hash": "a470a67cd1a20555ab379d24f1a39570173713b96d80436c550a21c6ca6f33a8",
+            "energy_hash": "06daf089acba2c590b92caad170bf1b494c58b4cd0f06db20b261b7991049dc5",
+            "compact_hash": "4807b39e"
+        }
     },
     {
-        "song_name": "SaveYourTears_original",
-        "hash": "97eb94204136f6f87e6b5b1c7ba2ca8c74b6b9df28915a40de78a12dc3ecc4de"
+        "song_name": "Group1_SaveYourTears_original.wav",
+        "hash": {
+            "mfcc_hash": "21106392c7d7c46c0b7bb0083475de39bfbc054ead6a14345858bc5c237a5d11",
+            "chroma_hash": "dda215972b58b91a636605fa78987092aa383b4b31e2d0329d04ff19e1d21eac",
+            "energy_hash": "701e2cb7e502287cb8d1d794dc8e464d50c443a937f0a7bb535f3a9bf0c56fa1",
+            "compact_hash": "bfada08a"
+        }
     },
     {
-        "song_name": "HitTheRoadJack_Full",
-        "hash": "717b02161f5004434ce95dccd1d0512ae967fbffff3c888788ea78333ff1f0a6"
+        "song_name": "Group20_HitTheRoadJack_Full.wav",
+        "hash": {
+            "mfcc_hash": "350b61c81ec8c6fed4adc76c47368f31c3494261fe197187531afe08fcc28623",
+            "chroma_hash": "9813d27da227a5bd6d1cc64dffeb20cef87fb899428b9f0c8794715a18a336d3",
+            "energy_hash": "e4ac8293dfa2c3d1b48ac1c6c496b2b503bde140f66602c6d80eea5fb786139f",
+            "compact_hash": "0213c736"
+        }
     },
     {
-        "song_name": "HitTheRoadJack_Music",
-        "hash": "e260e50f2cbf0f198432f00a1ec24b765c294d2b2698206b61ea1273c62a6d33"
+        "song_name": "Group20_HitTheRoadJack_Music.wav",
+        "hash": {
+            "mfcc_hash": "5533df654bb31b0ead93a6f5494bd4db87ee8c4623d29fb5eab6c8744b4aaf8f",
+            "chroma_hash": "89f95217272f7d34f9f17a5b675c15b228fa7da8f6051e31b195eaf49b894c18",
+            "energy_hash": "cd5cb157bcc5d4e948add668d7c31a92dfc60ea1f54a34b4bb9b91cf1d71bbf8",
+            "compact_hash": "e713455a"
+        }
     },
     {
-        "song_name": "HitTheRoadJack_Vocals",
-        "hash": "3d4f1e22b0ccb293d16b4f58262b80a23e6560583a565e4e603ec1fd4c30608b"
+        "song_name": "Group20_HitTheRoadJack_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "a8b309f4aeba64d904fa479b8fffa94be7790a4d712c7012970e5f15bd39f4d6",
+            "chroma_hash": "aef0d0ae4b93d5cb0fe20c58ae77411c5b42812fdad4930ec6868a86d5427253",
+            "energy_hash": "134e6543ddc35b40abb4f2f8aaaa2d0513a27e267beaf9081e29d84eba94017d",
+            "compact_hash": "cfded9d1"
+        }
     },
     {
-        "song_name": "SomeLikeYou_Full",
-        "hash": "755fdbbfdb797b7451513519e081563a747fdbaab59b1f52b300cf9b2b767205"
+        "song_name": "Group3_SomeLikeYou_Full.wav",
+        "hash": {
+            "mfcc_hash": "415432a9662c7ea6ffcaf5669f975129c9ffc1431546bcffe22362948f157173",
+            "chroma_hash": "dd3a430394f1f6ed89d89951ba46d80e1233ff93fbf0acb1d444ee35d30bdc51",
+            "energy_hash": "6f2304a436e27a348364bccebde3cced3e0be41882a72b9d1e7b830b0d0feace",
+            "compact_hash": "c24be084"
+        }
     },
     {
-        "song_name": "SomeLikeYou_Music",
-        "hash": "66dabdd50e75886a3c7ffff6cf74f52e5b65a6879227f4b7eaeec3d50ba1d559"
+        "song_name": "Group3_SomeLikeYou_Music.wav",
+        "hash": {
+            "mfcc_hash": "adaa151995e3a4c231f24ebab2410c602e1f9e47b0e8746f8b12bb12a8a6e1a9",
+            "chroma_hash": "8082e8181a52444b3d67417c2c058b3a36466c7f85007ea6ac11cfcc82532859",
+            "energy_hash": "d5d7c2756a4227df76fede5f36a8e6eec6fb534dbf17e523fc109914597d73de",
+            "compact_hash": "b7511a90"
+        }
     },
     {
-        "song_name": "SomeLikeYou_Vocal",
-        "hash": "56d1a3a5d09911f04c142c71e603d01fcc0300aef4a96a64301b8e1e6e5d6461"
+        "song_name": "Group3_SomeLikeYou_Vocal.wav",
+        "hash": {
+            "mfcc_hash": "9b286d9915733c814a3d4975640b3e7e5d317c18ca2a28ba0141b6ab50458743",
+            "chroma_hash": "a52352930dc4e462e46c8c02f15dda9dde97829e1f19183077d424bb2ff6b621",
+            "energy_hash": "693e3d77ef9930a304be451720841c65fcd36101da15960e29d15f2b50658dc6",
+            "compact_hash": "677b319e"
+        }
     },
     {
-        "song_name": "NinaCriedPower_Full",
-        "hash": "67e72487d2dc8ecae05693d26958d9fe2a4f2c72f6d9edffb3a145ea48e8aebd"
+        "song_name": "Group5_NinaCriedPower_Full.wav",
+        "hash": {
+            "mfcc_hash": "f84d1877a167207e0dcd2ce7bc17a7ca72627c436928620d2003ba1b35e0efa4",
+            "chroma_hash": "98964902e908171495cfcfe8ff818c1e9bb34b21653b96bed1c1f1e99590d081",
+            "energy_hash": "694156f300543e6c253ff92dcac91ca16723c62f097c9f4817bc414183c533ae",
+            "compact_hash": "1c057bc9"
+        }
     },
     {
-        "song_name": "NinaCriedPower_Music",
-        "hash": "5ddf35a03442bb3c18b9f447fdfc0f6dccaf00b81e35e65921075a0414a31bfa"
+        "song_name": "Group5_NinaCriedPower_Music.wav",
+        "hash": {
+            "mfcc_hash": "eb3237f228340601a990b437b3504f086a9946cdbf775bbf1c13737a6f7f5885",
+            "chroma_hash": "016c2ed092ffc1295bb6ed1b922e08b376c0742d0c613c125e4e0f624845725b",
+            "energy_hash": "97449613a886fdf5e6c621d36fa3473cb5683317e9393b06cc79d03ac11c1675",
+            "compact_hash": "0f12bb07"
+        }
     },
     {
-        "song_name": "NinaCriedPower_Vocals",
-        "hash": "aff7c07223e6f26cb0b34522771b98aa96300dc900d5e25333c972af51b0d86b"
+        "song_name": "Group5_NinaCriedPower_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "2f9efabecc399755a4afb8462fc012284e144cd4841357c6471e9a8e692decc5",
+            "chroma_hash": "47ea6ba0a6d9cbe8b7e4ad48f1dee7ce91979a731b0ca0fc3502c8dbb1a8dbbe",
+            "energy_hash": "916ff296dd2a3fbaedb02a2f371cf8d20b4063451ad76789686c2cd7bd0db627",
+            "compact_hash": "0881cf25"
+        }
     },
     {
-        "song_name": "Alkanas_Full",
-        "hash": "730a6ac3d7e71221ae582c7e3fbbe42c28c5616967f6252a834126d75fed9fdc"
+        "song_name": "Group6_Alkanas_Full.wav",
+        "hash": {
+            "mfcc_hash": "b84495b1e2367e102e5c80adac34baf275d2f305443d393393331399269c0b15",
+            "chroma_hash": "b813777428223c087ed10fc588f9c52db13909f59fb76ee5e347eb7b583350db",
+            "energy_hash": "59d0d728e4eef8f04f00fe328bd7807186b3830434663ea7e27a5871f4c7ba83",
+            "compact_hash": "4452e5d4"
+        }
     },
     {
-        "song_name": "Alkanas_Music",
-        "hash": "d3b52db9d6103eb42f57822b3811f29d77d712e73b2341cfb679ae7df4cb7d8b"
+        "song_name": "Group6_Alkanas_Music.wav",
+        "hash": {
+            "mfcc_hash": "24f9968c54a7d6f62926b6ed0fcb98635b1d119b8868c9e1a8ecc698005b71bb",
+            "chroma_hash": "3c9801d377466f8ad43119f956f716f0dfa427b63e7f9d529cd876d78bb638b8",
+            "energy_hash": "d914a837d1a7ef515e4c79af8a15aabc1205e4d93dc794126ac5be87006bfca9",
+            "compact_hash": "e115b861"
+        }
     },
     {
-        "song_name": "Alkanas_Vocals",
-        "hash": "c108e7c33f1e95a0b1b3dc0c585ac9f39e74a5a66d0895b103c289225f69e928"
+        "song_name": "Group6_Alkanas_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "036a0c9aa80386f9aa04ee1b7eb6e5ab5a0018ba6eb5185abda0a8c01663f3a6",
+            "chroma_hash": "3f665c9f0d3e310093f681749d348039cbb0e5594e323f1fd551ecb85065e93f",
+            "energy_hash": "134e6543ddc35b40abb4f2f8aaaa2d0513a27e267beaf9081e29d84eba94017d",
+            "compact_hash": "a9dd81e0"
+        }
     },
     {
-        "song_name": "SweetDreams_Full",
-        "hash": "0b99b25f4f073d6dae361c37d5e8e09fa584e71e33448912830ab59d301fd3e0"
+        "song_name": "Group7_SweetDreams_Full.wav",
+        "hash": {
+            "mfcc_hash": "b93e086c25d8f1467207e6af1e330f6731535566e149f1f24c192dfda69aa88f",
+            "chroma_hash": "6498ef79df4bf0aca5275fb41cd3331556da6a2ecdc1ab66bee3b2c000751564",
+            "energy_hash": "a6c531a2c55933a4a87e70a1135aef3be46bbeb165917f57d851047a32922323",
+            "compact_hash": "dd38cf69"
+        }
     },
     {
-        "song_name": "SweetDreams_Music",
-        "hash": "517e569a2c580a33c6e1ae5cefcd2ab951dbf22492b9b8e6f061039ed59bcdca"
+        "song_name": "Group7_SweetDreams_Music.wav",
+        "hash": {
+            "mfcc_hash": "99a87571a5d1b0e84aeac4bc6bf0806e24cc0e2ed8c1392e251c8bac1981c0e6",
+            "chroma_hash": "0769e9851edae095a2851333503aab94200ffaa1618e738938896f8c9f36a876",
+            "energy_hash": "f245f47147a5f1e34749e7d6b465a9504662be462305f7475419f50eb47f33c5",
+            "compact_hash": "d912845e"
+        }
     },
     {
-        "song_name": "SweetDreams_Vocals",
-        "hash": "87a731411d07c2abd2504a277a33e052afd191eada883f3fbc0366a1dd2ae3e9"
+        "song_name": "Group7_SweetDreams_Vocals.wav",
+        "hash": {
+            "mfcc_hash": "9637545dd124a8b2a2cd9c4a4a41346bd3744905e78d78350a846351fbed813e",
+            "chroma_hash": "67f54171e0767f4917b77f92db49ba89b85403ed938612d4306de3cd44eaf60d",
+            "energy_hash": "134e6543ddc35b40abb4f2f8aaaa2d0513a27e267beaf9081e29d84eba94017d",
+            "compact_hash": "b3703a26"
+        }
     },
     {
-        "song_name": "AThousandYears_instruments",
-        "hash": "0d57c9bd841f58d77407b4c492af9d8a092dbe4bb288554550f43a294730a94e"
+        "song_name": "Group8_AThousandYears_instruments.wav",
+        "hash": {
+            "mfcc_hash": "934037899f178eb798c95acf70ab0edcdb83d54974153bc989a6f6a33fcc350d",
+            "chroma_hash": "22568a158a65615b9ca068c573c27fab94d3acad2d520c377742429d795088d2",
+            "energy_hash": "1664a9c9f2eb8b9f4dc180ffd7df0b3b1c1bb3c74f6e11d962aceb24f48cc040",
+            "compact_hash": "cd0a2bd3"
+        }
     },
     {
-        "song_name": "AThousandYears_lyrics",
-        "hash": "852addecb2d944c7d0895ff2d48582e9ceaf244202725af03549c71f77f95bd3"
+        "song_name": "Group8_AThousandYears_lyrics.wav",
+        "hash": {
+            "mfcc_hash": "795ab5411fb1598cce6279f8e8c45ae2ccb92f19796110f2d1563143494ada15",
+            "chroma_hash": "4aca6c910caf81beced46373c48fec62f570af9a7e3b0b639323e538f6dd186a",
+            "energy_hash": "fd39d44f236a4de4aefdf201fe15e8cdd967d017745f96a6b8744a121f12cc79",
+            "compact_hash": "ad8aca6e"
+        }
     },
     {
-        "song_name": "AThousandYears_original",
-        "hash": "2b604b495968ec6be69f240d50da6e2224f985e0cdc1449c03b655833dfce4a6"
+        "song_name": "Group8_AThousandYears_original.wav",
+        "hash": {
+            "mfcc_hash": "66c7132e3188c98cee746e2108ccbe51fd8e61a9ed785fa9774c3854ae2256e4",
+            "chroma_hash": "0ebfe229cb8b18b527d2d4b8f383e72d228808e2f3dec91cda3fd9abc538e395",
+            "energy_hash": "1703d56bb959240fc28fdaa7629ba77b337ab20919e91a8fd83226efd92c79d4",
+            "compact_hash": "4b6125f9"
+        }
     },
     {
-        "song_name": "PleasePleasePlease_full",
-        "hash": "72fdbf0a58acc6ced59bf998339c6221a2c918557f8e2e03e1137651bba35e35"
+        "song_name": "Group9_PleasePleasePlease_full.wav",
+        "hash": {
+            "mfcc_hash": "f10f1de7860e5ed3176fca8eecf3eacb4498ce2c43779010d4a7f8aef8f737dd",
+            "chroma_hash": "c7060358488cc22f1e0a801eb8a513f02290b52fee9a7f5120f817604fcbe4aa",
+            "energy_hash": "1fa219862ee1c16d7761a686b4a8aed7d77cc2ff416c1514a75db7298f127310",
+            "compact_hash": "74c53852"
+        }
     },
     {
-        "song_name": "PleasePleasePlease_music",
-        "hash": "97b4660deb9019c3f8d51a671f99cf7bdd90379f7b9f7845f1529977d626e0a1"
+        "song_name": "Group9_PleasePleasePlease_music.wav",
+        "hash": {
+            "mfcc_hash": "80b4fdd8041ddf2c2c1adc8d4caddafb2c17099e71fa1c4f8a34c10cc21bc867",
+            "chroma_hash": "8184e6f8205252d832054ea4b0f0f245f2ed36768dda0289695803b349049ddf",
+            "energy_hash": "a4882b3d5fe8b17c7fdb5effb11abc732c4ad5c15493044cfc119af120338747",
+            "compact_hash": "6f268c52"
+        }
     },
     {
-        "song_name": "PleasePleasePlease_vocal",
-        "hash": "da1f70232c912cd250fcb63e2be54761daff45c2f8d670987dbcb3cc5d96cb1b"
+        "song_name": "Group9_PleasePleasePlease_vocal.wav",
+        "hash": {
+            "mfcc_hash": "f826694bebaca9a365ccbcb9008000fd529a751b13acd16894d5e981798ac6ae",
+            "chroma_hash": "687dda6f79bc03236b1f3e06859f642e5e6c199eaca2a4d41185bea47bedb47b",
+            "energy_hash": "cea85ee481446392cd64d37ac7588fe0d1e19bae7de6c71be01089821c5882cf",
+            "compact_hash": "496b0412"
+        }
     }
 ]
