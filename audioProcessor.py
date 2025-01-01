@@ -8,6 +8,7 @@ from imagehash import phash
 from PIL import Image
 import json
 import hashlib
+from statistics import mean
 from scipy.spatial.distance import cosine
 
 # Function to generate and save spectrograms
@@ -42,20 +43,39 @@ def hash_spectrogram(image_path):
     return str(phash(Image.open(image_path)))
 
 # Function to compute a perceptual hash of features
-def hash_features(features):
-    flattened_features = []
-    for key, value in features.items():
-        if isinstance(value, list):
-            flattened_features.extend(value)
-        else:
-            flattened_features.append(value)
-
-    flattened_features = np.array(flattened_features)
-    if np.linalg.norm(flattened_features) > 0:
-        flattened_features = flattened_features / np.linalg.norm(flattened_features)
-
-    hash_object = hashlib.sha256(flattened_features.tobytes())
-    return hash_object.hexdigest()
+def hash_features(audio_path, sr=22050):
+    y, sr = librosa.load(audio_path, sr=sr)
+    # Extract key features for hashing
+    hash_dict = {}
+    
+    # 1. MFCC-based hash
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+    mfcc_mean = mfccs.mean(axis=1)
+    mfcc_string = ''.join([str(int(abs(x) * 1000)) for x in mfcc_mean])
+    hash_dict['mfcc_hash'] = hashlib.sha256(mfcc_string.encode()).hexdigest()
+    
+    # 2. Chroma-based hash
+    chroma = librosa.feature.chroma_stft(y=y, sr=sr)
+    chroma_mean = chroma.mean(axis=1)
+    chroma_string = ''.join([str(int(x * 1000)) for x in chroma_mean])
+    hash_dict['chroma_hash'] = hashlib.sha256(chroma_string.encode()).hexdigest()
+    
+    # 3. Energy-based hash
+    rmse = librosa.feature.rms(y=y)[0]
+    energy_string = ''.join([str(int(x * 1000)) for x in rmse[:100]])  # Use first 100 frames
+    hash_dict['energy_hash'] = hashlib.sha256(energy_string.encode()).hexdigest()
+    
+    # 4. Compact hash (32-bit) combining multiple features
+    compact_features = [
+        int(mean(mfcc_mean) * 1000),
+        int(mean(chroma_mean) * 1000),
+        int(mean(rmse) * 1000),
+        int(librosa.feature.zero_crossing_rate(y).mean() * 1000)
+    ]
+    compact_string = ''.join([str(x % 256) for x in compact_features])
+    hash_dict['compact_hash'] = format(int(hashlib.md5(compact_string.encode()).hexdigest(), 16) % (2**32), '08x')
+    
+    return hash_dict
 
 # Function to calculate similarity between hashes
 def calculate_similarity(hash1, hash2):

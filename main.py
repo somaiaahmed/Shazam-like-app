@@ -319,14 +319,37 @@ class AudioSimilarityApp(QMainWindow):
     @staticmethod
     def calculate_hash_similarity(hash1, hash2):
         """Calculate similarity between two perceptual hashes"""
-        try:
-            hash1_bytes = bytes.fromhex(hash1)
-            hash2_bytes = bytes.fromhex(hash2)
-            matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
-            return matches / len(hash1_bytes)
-        except Exception as e:
-            print(f"Error calculating hash similarity: {str(e)}")
-            return 0
+        def calculate_hamming_similarity(hash1, hash2):
+            """Calculate similarity between two hashes using Hamming distance"""
+            try:
+                # Convert hex strings to bytes
+                hash1_bytes = bytes.fromhex(hash1)
+                hash2_bytes = bytes.fromhex(hash2)
+                
+                # Count matching bits
+                matches = sum(1 for a, b in zip(hash1_bytes, hash2_bytes) if a == b)
+                return matches / len(hash1_bytes)
+            except Exception as e:
+                print(f"Error calculating hash similarity: {str(e)}")
+                return 0
+            
+        similarities = {
+            'mfcc': calculate_hamming_similarity(hash1['mfcc_hash'], hash2['mfcc_hash']),
+            'chroma': calculate_hamming_similarity(hash1['chroma_hash'], hash2['chroma_hash']),
+            'energy': calculate_hamming_similarity(hash1['energy_hash'], hash2['energy_hash']),
+            'compact': calculate_hamming_similarity(hash1['compact_hash'], hash2['compact_hash'])
+        }
+        
+        # Weights for different hash types
+        weights = {
+            'mfcc': 0.4,
+            'chroma': 0.3,
+            'energy': 0.2,
+            'compact': 0.1
+        }
+        
+        return sum(similarities[k] * weights[k] for k in weights)
+    
 
     def search_similar_songs(self):
         """Enhanced search method with type-based filtering"""
@@ -336,7 +359,7 @@ class AudioSimilarityApp(QMainWindow):
 
         try:
             # Load databases
-            with open("output/perceptual_hashes.json", "r") as f:
+            with open("output/feature_hashes.json", "r") as f:
                 hash_database = json.load(f)
             with open("output/all_features.json", "r") as f:
                 feature_database = json.load(f)
@@ -344,6 +367,8 @@ class AudioSimilarityApp(QMainWindow):
             # Create lookup dictionary for features
             feature_lookup = {entry['song_name']: entry['features']
                               for entry in feature_database}
+            hash_lookup = {entry['song_name']: entry['hash']
+                              for entry in hash_database}
 
             # Determine search type based on input files
             file1_type = self.get_file_type(self.file1_path)
@@ -370,7 +395,7 @@ class AudioSimilarityApp(QMainWindow):
 
             # Extract features and hash for query
             query_features = extract_features(query_path)
-            query_hash = hash_features(query_features)
+            query_hash = hash_features(query_path)
 
             # Calculate similarities with type filtering
             similarities = []
@@ -380,9 +405,9 @@ class AudioSimilarityApp(QMainWindow):
                 
                 # Only process entries matching the target type
                 if entry_type == target_type and song_name in feature_lookup:
-                    hash_sim = self.calculate_hash_similarity(query_hash, hash_entry['perceptual_audio_hash'])
+                    hash_sim = self.calculate_hash_similarity(query_hash, hash_lookup[song_name])
                     feature_sim = self.calculate_feature_similarity(query_features, feature_lookup[song_name])
-                    combined_sim = (0.8 * feature_sim) + (0.2 * hash_sim)
+                    combined_sim = (0.7 * feature_sim) + (0.3 * hash_sim)
 
                     similarities.append({
                         'song_name': song_name,
