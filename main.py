@@ -36,7 +36,9 @@ class AudioSimilarityApp(QMainWindow):
 
         # Set the stylesheet to the application
         self.setStyleSheet(stylesheet)
-        self.setWindowTitle("Audio Similarity and Mixer")
+        self.setWindowTitle("Fingerprint")
+        self.setWindowIcon(QIcon("ico/logo.png"))
+
         # Made taller to accommodate new controls
         self.setGeometry(100, 100, 1000, 800)
 
