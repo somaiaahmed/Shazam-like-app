@@ -1,6 +1,6 @@
 [
     {
-        "song_name": "wenElkhael_music",
+        "song_name": "Group10_wenElkhael_music.wav",
         "features": {
             "spectral_centroid": 1759.8124914357406,
             "spectral_bandwidth": 2042.367283326844,
@@ -52,7 +52,7 @@
         }
     },
     {
-        "song_name": "wenElkhael_original",
+        "song_name": "Group10_wenElkhael_original.wav",
         "features": {
             "spectral_centroid": 1483.4038319978506,
             "spectral_bandwidth": 1647.5088382200315,
@@ -104,7 +104,7 @@
         }
     },
     {
-        "song_name": "wenElkhael_vocals",
+        "song_name": "Group10_wenElkhael_vocals.wav",
         "features": {
             "spectral_centroid": 1226.3519180509493,
             "spectral_bandwidth": 1134.3560771707396,
@@ -156,7 +156,7 @@
         }
     },
     {
-        "song_name": "FE!N_Instruments",
+        "song_name": "Group11_FE!N_Instruments.wav",
         "features": {
             "spectral_centroid": 2225.601620187995,
             "spectral_bandwidth": 2706.7754731857694,
@@ -208,7 +208,7 @@
         }
     },
     {
-        "song_name": "FE!N_original",
+        "song_name": "Group11_FE!N_original.wav",
         "features": {
             "spectral_centroid": 2541.556605310536,
             "spectral_bandwidth": 2839.4936114040343,
@@ -260,7 +260,7 @@
         }
     },
     {
-        "song_name": "FE!N_Vocals",
+        "song_name": "Group11_FE!N_Vocals.wav",
         "features": {
             "spectral_centroid": 2714.5230234306946,
             "spectral_bandwidth": 2329.0277895498343,
@@ -312,7 +312,7 @@
         }
     },
     {
-        "song_name": "LetHerGo_Instrumental",
+        "song_name": "Group13_LetHerGo_Instrumental.wav",
         "features": {
             "spectral_centroid": 2051.0224938374995,
             "spectral_bandwidth": 2394.5468143614703,
@@ -364,7 +364,7 @@
         }
     },
     {
-        "song_name": "LetHerGo_Original",
+        "song_name": "Group13_LetHerGo_Original.wav",
         "features": {
             "spectral_centroid": 2359.1831864003393,
             "spectral_bandwidth": 2598.7690373932924,
@@ -416,7 +416,7 @@
         }
     },
     {
-        "song_name": "LetHerGo_Vocals",
+        "song_name": "Group13_LetHerGo_Vocals.wav",
         "features": {
             "spectral_centroid": 2283.3048558954847,
             "spectral_bandwidth": 2281.272198936795,
@@ -468,7 +468,7 @@
         }
     },
     {
-        "song_name": "aSkyFullOf Stars_Music",
+        "song_name": "Group14_aSkyFullOf Stars_Music.mp3",
         "features": {
             "spectral_centroid": 1072.98496199582,
             "spectral_bandwidth": 1583.463831081118,
@@ -520,7 +520,7 @@
         }
     },
     {
-        "song_name": "aSkyFullOf Stars_Original",
+        "song_name": "Group14_aSkyFullOf Stars_Original.mp3",
         "features": {
             "spectral_centroid": 1469.580649760125,
             "spectral_bandwidth": 1882.4329754840164,
@@ -572,7 +572,7 @@
         }
     },
     {
-        "song_name": "aSkyFullOf Stars_Vocals",
+        "song_name": "Group14_aSkyFullOf Stars_Vocals.mp3",
         "features": {
             "spectral_centroid": 2489.2842288197166,
             "spectral_bandwidth": 2260.7628878496853,
@@ -624,7 +624,7 @@
         }
     },
     {
-        "song_name": "YaLala_instruments",
+        "song_name": "Group15_YaLala_instruments.wav",
         "features": {
             "spectral_centroid": 1856.2201656665172,
             "spectral_bandwidth": 2265.3037044116195,
@@ -676,7 +676,7 @@
         }
     },
     {
-        "song_name": "YaLala_lyrics",
+        "song_name": "Group15_YaLala_lyrics.wav",
         "features": {
             "spectral_centroid": 1732.1646795220574,
             "spectral_bandwidth": 1851.5612152201986,
@@ -728,7 +728,7 @@
         }
     },
     {
-        "song_name": "YaLala_original",
+        "song_name": "Group15_YaLala_original.wav",
         "features": {
             "spectral_centroid": 2120.9346431497074,
             "spectral_bandwidth": 2554.2053175138776,
@@ -780,7 +780,7 @@
         }
     },
     {
-        "song_name": "SomethingJustLikeThat_Instruments",
+        "song_name": "Group16_SomethingJustLikeThat_Instruments.wav",
         "features": {
             "spectral_centroid": 663.3271267245417,
             "spectral_bandwidth": 770.7006633672739,
@@ -832,7 +832,7 @@
         }
     },
     {
-        "song_name": "SomethingJustLikeThat_Lyrics",
+        "song_name": "Group16_SomethingJustLikeThat_Lyrics.wav",
         "features": {
             "spectral_centroid": 2946.475586643595,
             "spectral_bandwidth": 2382.9437242752683,
@@ -884,7 +884,7 @@
         }
     },
     {
-        "song_name": "SomthingJustLikeThat_Original",
+        "song_name": "Group16_SomthingJustLikeThat_Original.wav",
         "features": {
             "spectral_centroid": 2451.8954605020103,
             "spectral_bandwidth": 2655.180075862333,
@@ -936,7 +936,7 @@
         }
     },
     {
-        "song_name": "ShakeItOut_instruments",
+        "song_name": "Group17_ShakeItOut_instruments.wav",
         "features": {
             "spectral_centroid": 1680.7008141757415,
             "spectral_bandwidth": 2139.6836394230445,
@@ -988,7 +988,7 @@
         }
     },
     {
-        "song_name": "ShakeItOut_lyrics",
+        "song_name": "Group17_ShakeItOut_lyrics.wav",
         "features": {
             "spectral_centroid": 3035.1469961767293,
             "spectral_bandwidth": 2266.9038596570604,
@@ -1040,7 +1040,7 @@
         }
     },
     {
-        "song_name": "ShakeItOut_original",
+        "song_name": "Group17_ShakeItOut_original.wav",
         "features": {
             "spectral_centroid": 2320.5064485091875,
             "spectral_bandwidth": 2390.791281003944,
@@ -1092,7 +1092,7 @@
         }
     },
     {
-        "song_name": "RollingInTheDeep_Music",
+        "song_name": "Group18_RollingInTheDeep_Music.wav",
         "features": {
             "spectral_centroid": 1183.0371532244246,
             "spectral_bandwidth": 1567.819787162289,
@@ -1144,7 +1144,7 @@
         }
     },
     {
-        "song_name": "RollingInTheDeep_Vocals",
+        "song_name": "Group18_RollingInTheDeep_Vocals.wav",
         "features": {
             "spectral_centroid": 2125.340695264373,
             "spectral_bandwidth": 1766.2232646041916,
@@ -1196,7 +1196,7 @@
         }
     },
     {
-        "song_name": "ShadowOfMine_Full",
+        "song_name": "Group19_ShadowOfMine_Full.wav",
         "features": {
             "spectral_centroid": 1893.843183580932,
             "spectral_bandwidth": 2465.3525915048867,
@@ -1248,7 +1248,7 @@
         }
     },
     {
-        "song_name": "ShadowOfMine_Music",
+        "song_name": "Group19_ShadowOfMine_Music.wav",
         "features": {
             "spectral_centroid": 922.922404945277,
             "spectral_bandwidth": 1408.201324875297,
@@ -1300,7 +1300,7 @@
         }
     },
     {
-        "song_name": "ShadowOfMine_Vocals",
+        "song_name": "Group19_ShadowOfMine_Vocals.wav",
         "features": {
             "spectral_centroid": 2850.818449154188,
             "spectral_bandwidth": 2707.8335516051475,
@@ -1352,7 +1352,7 @@
         }
     },
     {
-        "song_name": "SaveYourTears_instruments",
+        "song_name": "Group1_SaveYourTears_instruments.wav",
         "features": {
             "spectral_centroid": 1587.4674640682322,
             "spectral_bandwidth": 2062.4646580356825,
@@ -1404,7 +1404,7 @@
         }
     },
     {
-        "song_name": "SaveYourTears_lyrcis",
+        "song_name": "Group1_SaveYourTears_lyrcis.wav",
         "features": {
             "spectral_centroid": 2605.353001232509,
             "spectral_bandwidth": 2505.0159269269957,
@@ -1456,7 +1456,7 @@
         }
     },
     {
-        "song_name": "SaveYourTears_original",
+        "song_name": "Group1_SaveYourTears_original.wav",
         "features": {
             "spectral_centroid": 1831.178225855268,
             "spectral_bandwidth": 2172.0541593416547,
@@ -1508,7 +1508,7 @@
         }
     },
     {
-        "song_name": "HitTheRoadJack_Full",
+        "song_name": "Group20_HitTheRoadJack_Full.wav",
         "features": {
             "spectral_centroid": 2560.5722723947183,
             "spectral_bandwidth": 2639.6766318721,
@@ -1560,7 +1560,7 @@
         }
     },
     {
-        "song_name": "HitTheRoadJack_Music",
+        "song_name": "Group20_HitTheRoadJack_Music.wav",
         "features": {
             "spectral_centroid": 2477.852888686359,
             "spectral_bandwidth": 2837.6308381321637,
@@ -1612,7 +1612,7 @@
         }
     },
     {
-        "song_name": "HitTheRoadJack_Vocals",
+        "song_name": "Group20_HitTheRoadJack_Vocals.wav",
         "features": {
             "spectral_centroid": 2537.714634700122,
             "spectral_bandwidth": 2272.482864784575,
@@ -1664,7 +1664,7 @@
         }
     },
     {
-        "song_name": "SomeLikeYou_Full",
+        "song_name": "Group3_SomeLikeYou_Full.wav",
         "features": {
             "spectral_centroid": 1456.834806698112,
             "spectral_bandwidth": 1818.488268054572,
@@ -1716,7 +1716,7 @@
         }
     },
     {
-        "song_name": "SomeLikeYou_Music",
+        "song_name": "Group3_SomeLikeYou_Music.wav",
         "features": {
             "spectral_centroid": 463.95662265184103,
             "spectral_bandwidth": 511.1969814872978,
@@ -1768,7 +1768,7 @@
         }
     },
     {
-        "song_name": "SomeLikeYou_Vocal",
+        "song_name": "Group3_SomeLikeYou_Vocal.wav",
         "features": {
             "spectral_centroid": 2034.516000203321,
             "spectral_bandwidth": 2340.6723360954543,
@@ -1820,7 +1820,7 @@
         }
     },
     {
-        "song_name": "NinaCriedPower_Full",
+        "song_name": "Group5_NinaCriedPower_Full.wav",
         "features": {
             "spectral_centroid": 2483.423816521369,
             "spectral_bandwidth": 2641.6551455836075,
@@ -1872,7 +1872,7 @@
         }
     },
     {
-        "song_name": "NinaCriedPower_Music",
+        "song_name": "Group5_NinaCriedPower_Music.wav",
         "features": {
             "spectral_centroid": 2138.0504606938375,
             "spectral_bandwidth": 2476.516799609963,
@@ -1924,7 +1924,7 @@
         }
     },
     {
-        "song_name": "NinaCriedPower_Vocals",
+        "song_name": "Group5_NinaCriedPower_Vocals.wav",
         "features": {
             "spectral_centroid": 2806.07699846811,
             "spectral_bandwidth": 2485.2346868468917,
@@ -1976,7 +1976,7 @@
         }
     },
     {
-        "song_name": "Alkanas_Full",
+        "song_name": "Group6_Alkanas_Full.wav",
         "features": {
             "spectral_centroid": 1526.121115904172,
             "spectral_bandwidth": 2082.170183851023,
@@ -2028,7 +2028,7 @@
         }
     },
     {
-        "song_name": "Alkanas_Music",
+        "song_name": "Group6_Alkanas_Music.wav",
         "features": {
             "spectral_centroid": 1076.1857883468533,
             "spectral_bandwidth": 1741.6936909747305,
@@ -2080,7 +2080,7 @@
         }
     },
     {
-        "song_name": "Alkanas_Vocals",
+        "song_name": "Group6_Alkanas_Vocals.wav",
         "features": {
             "spectral_centroid": 2325.585862502474,
             "spectral_bandwidth": 2496.80215683513,
@@ -2132,7 +2132,7 @@
         }
     },
     {
-        "song_name": "SweetDreams_Full",
+        "song_name": "Group7_SweetDreams_Full.wav",
         "features": {
             "spectral_centroid": 2667.281973245916,
             "spectral_bandwidth": 2442.782154606733,
@@ -2184,7 +2184,7 @@
         }
     },
     {
-        "song_name": "SweetDreams_Music",
+        "song_name": "Group7_SweetDreams_Music.wav",
         "features": {
             "spectral_centroid": 1450.5219274180856,
             "spectral_bandwidth": 1893.4235420503035,
@@ -2236,7 +2236,7 @@
         }
     },
     {
-        "song_name": "SweetDreams_Vocals",
+        "song_name": "Group7_SweetDreams_Vocals.wav",
         "features": {
             "spectral_centroid": 3673.5792592246385,
             "spectral_bandwidth": 2613.943668670377,
@@ -2288,7 +2288,7 @@
         }
     },
     {
-        "song_name": "AThousandYears_instruments",
+        "song_name": "Group8_AThousandYears_instruments.wav",
         "features": {
             "spectral_centroid": 1388.4756336575897,
             "spectral_bandwidth": 1765.8873869113029,
@@ -2340,7 +2340,7 @@
         }
     },
     {
-        "song_name": "AThousandYears_lyrics",
+        "song_name": "Group8_AThousandYears_lyrics.wav",
         "features": {
             "spectral_centroid": 3229.207681765578,
             "spectral_bandwidth": 2986.767796809783,
@@ -2392,7 +2392,7 @@
         }
     },
     {
-        "song_name": "AThousandYears_original",
+        "song_name": "Group8_AThousandYears_original.wav",
         "features": {
             "spectral_centroid": 2065.2823595116724,
             "spectral_bandwidth": 2442.6642742953427,
@@ -2444,7 +2444,7 @@
         }
     },
     {
-        "song_name": "PleasePleasePlease_full",
+        "song_name": "Group9_PleasePleasePlease_full.wav",
         "features": {
             "spectral_centroid": 2496.2142503475316,
             "spectral_bandwidth": 2783.635484591513,
@@ -2496,7 +2496,7 @@
         }
     },
     {
-        "song_name": "PleasePleasePlease_music",
+        "song_name": "Group9_PleasePleasePlease_music.wav",
         "features": {
             "spectral_centroid": 1708.4753869675128,
             "spectral_bandwidth": 2106.886785406551,
@@ -2548,7 +2548,7 @@
         }
     },
     {
-        "song_name": "PleasePleasePlease_vocal",
+        "song_name": "Group9_PleasePleasePlease_vocal.wav",
         "features": {
             "spectral_centroid": 3311.469524959398,
             "spectral_bandwidth": 2867.328979335172,
